@@ -1,0 +1,9 @@
+output * bg /home/tal/Pictures/background/background.jpg fill
+output * enable
+
+output HDMI-A-1 resolution 1920x1080 position 1920 0
+output HDMI-A-1 scale 1.2
+output eDP-1 resolution 1920x1200 position 0 0
+output eDP-1 scale 1.35
+
+

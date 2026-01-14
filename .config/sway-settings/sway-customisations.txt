@@ -1,0 +1,22 @@
+# Your preferred terminal emulator
+set $term kitty
+set $browser firefox
+
+# Startup Applications
+# Terminal
+exec kitty
+# Music
+assign [app_id="spotify"] 2
+exec spotify
+# Volume Control
+assign [app_id="org.pulseaudio.pavucontrol"] 2
+exec pavucontrol
+# Browser
+assign [app_id="firefox"] 3
+exec firefox
+
+# Window Customisation
+default_border pixel 2
+hide_edge_borders smart
+
+
