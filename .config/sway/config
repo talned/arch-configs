@@ -1,12 +1,11 @@
-# Talha's Sway Configuration
+# SWAY CONFIG
 
-# Startup Commands
+### Startup
 exec kanshi &
 output eDP-1 enable
 
-### Variables
-
-# Logo key.
+# Variables
+# Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Home row direction keys, like vim
 set $left h
@@ -17,53 +16,89 @@ set $right l
 set $term kitty
 set $browser firefox
 
+# Application Rules
+assign [app_id="spotify"] 2
+assign [app_id="org.pulseaudio.pavucontrol"] 2
+assign [app_id="firefox"] 3
+
 # Startup Applications
 # Terminal
 exec kitty
 # Music
-assign [app_id="spotify"] 2
 exec spotify
 # Volume Control
-assign [app_id="org.pulseaudio.pavucontrol"] 2
 exec pavucontrol
 # Browser
-assign [app_id="firefox"] 3
-exec firefox
+exec $browser
+
+#========================#
+# Appearance and Theming #
+#========================#
+
+set $black       #000000
+set $white       #ffffff
+set $grey        #2a2a2a
+set $white_grey  #dddddd
+set $red         #900000
+set $bblack      #161616
+
+# Client Colors
+# Format: client.[state] [border] [background] [text] [indicator] [child_border]
+
+client.focused           $white  $black  $white $white $white
+
+client.unfocused         $grey   $bblack $white $red   $grey
+
+client.focused_inactive  $grey   $bblack $white $grey  $grey
+
+client.urgent            $red    $black  $white $red   $red
+
+client.focused_tab_title $white  $black  $white $red   $white
+
+# Format: client.background [background]
+
+client.background $black
 
 # Window Customisation
-default_border pixel 2
+default_border pixel 1
 hide_edge_borders smart
 
-### Output configuration
+# Increase titlebar font size
+titlebar_border_thickness 2
+font pango:monospace 12
 
-output * bg /home/tal/Pictures/background/background.jpg fill
+# Output configuration
+output * bg /home/tal/Pictures/background.jpg fill
 output * enable
+
+# Settings
+# Focus follows mouse when switching with keyboard
+focus_follows_mouse always
+mouse_warping container
 
 output HDMI-A-1 resolution 1920x1080 position 1920 0
 output HDMI-A-1 scale 1.2
 output eDP-1 resolution 1920x1200 position 0 0
 output eDP-1 scale 1.35
 
-### Input configuration
+# Input configuration
 input type:touchpad {
-    natural_scroll enabled
-}
-input type:keyboard {
-    xkb_layout "us"
+	natural_scroll enabled
 }
 
-### Key bindings
-#
+# Key bindings
 # Basics:
-#
-   
     # Applications
     bindsym $mod+Return exec $term
+    bindsym $mod+Shift+Return exec emacsclient -c -a 'emacs'
     bindsym $mod+b exec $browser
-    bindsym $mod+n exec spotify
     bindsym $mod+Shift+r exec dconf-editor
-    bindsym $mod+Shift+p exec cycle-display
+    bindsym $mod+n exec spotify
     bindsym $mod+Shift+v exec pavucontrol
+    bindsym $mod+Shift+o exec obs
+
+    # Scripts
+    bindsym $mod+Shift+p exec cycle-display
 
     # Kill focused window
     bindsym $mod+Shift+q kill
@@ -78,11 +113,10 @@ input type:keyboard {
     # Reload the configuration file
     bindsym $mod+Shift+c reload
 
-    # Exit sway
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit?' -B 'Yes, exit sway' 'swaymsg exit'
-#
+    # Exit sway (logs you out of your Wayland session)
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit Sway?' -B 'Yes, exit sway' 'swaymsg exit'
+
 # Moving around:
-#
     # Move your focus around
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
@@ -104,9 +138,8 @@ input type:keyboard {
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
-#
+
 # Workspaces:
-#
     # Switch to workspace
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
@@ -129,14 +162,9 @@ input type:keyboard {
     bindsym $mod+Shift+8 move container to workspace number 8
     bindsym $mod+Shift+9 move container to workspace number 9
     bindsym $mod+Shift+0 move container to workspace number 10
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
-#
+
 # Layout stuff:
-#
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
+    # horizontal and vertical splits
     bindsym $mod+o splith
     bindsym $mod+i splitv
 
@@ -156,21 +184,18 @@ input type:keyboard {
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
-#
+
 # Scratchpad:
-#
     # Sway has a "scratchpad", which is a bag of holding for windows.
     # You can send windows there and get them back later.
-
     # Move the currently focused window to the scratchpad
     bindsym $mod+Shift+minus move scratchpad
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
-#
+
 # Resizing containers:
-#
 mode "resize" {
     # left will shrink the containers width
     # right will grow the containers width
@@ -192,9 +217,8 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
-#
+
 # Utilities:
-#
     # Special keys to adjust volume via PulseAudio
     bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
     bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
@@ -204,8 +228,7 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     # Special key to take a screenshot with grim
-    bindsym Print exec grim
-    bindsym $mod+ctrl+s exec hyprshot -z -m region -o /home/tal/Pictures/Screenshots
+    bindsym $mod+CTRL+s exec hyprshot -m region -z -o ~/Pictures/Screenshots
 
 # Status Bar:
 bar {
@@ -221,6 +244,7 @@ bar {
         statusline #ffffff
         background #000000
         inactive_workspace #ffffffff #000000ff #ffffff
+	focused_workspace #ffffff #ffffff #000000
     }
 }
 
