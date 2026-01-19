@@ -96,7 +96,8 @@ input type:touchpad {
 # Basics:
     # Applications
     bindsym $mod+Return exec $term
-    bindsym $mod+Shift+Return exec emacsclient -c -a 'emacs'
+    #bindsym $mod+Shift+Return exec emacsclient -c -a 'emacs'
+    bindsym $mod+Shift+Return exec code
     bindsym $mod+b exec $browser
     bindsym $mod+Shift+r exec dconf-editor
     bindsym $mod+n exec spotify
