@@ -21,6 +21,8 @@ assign [app_id="spotify"] 2
 assign [app_id="org.pulseaudio.pavucontrol"] 2
 assign [app_id="firefox"] 3
 
+default_orientation horizontal
+
 # Startup Applications
 # Terminal
 exec kitty
@@ -41,23 +43,27 @@ set $grey        #2a2a2a
 set $white_grey  #dddddd
 set $red         #900000
 set $bblack      #161616
+set $color1      #222222
+set $color2      #0F0F0F
+set $color3      #333333
+set $color4      #6E6E6E
 
 # Client Colors
 # Format: client.[state] [border] [background] [text] [indicator] [child_border]
 
-client.focused           $white  $black  $white $white $white
+client.focused           $white  $black  $white  $white   $white
 
-client.unfocused         $grey   $bblack $white $red   $grey
+client.focused_inactive  $color3 $color1 $color4 $color2  $color2
 
-client.focused_inactive  $grey   $bblack $white $grey  $grey
+#client.unfocused         $grey   $bblack $white $red   $grey
 
-client.urgent            $red    $black  $white $red   $red
+#client.urgent            $red    $black  $white $red   $red
 
-client.focused_tab_title $white  $black  $white $red   $white
+#client.focused_tab_title $white  $black  $white $red   $white
 
 # Format: client.background [background]
 
-client.background $black
+#client.background $black
 
 # Window Customisation
 default_border pixel 1
@@ -244,7 +250,7 @@ bar {
         statusline #ffffff
         background #000000
         inactive_workspace #ffffffff #000000ff #ffffff
-        focused_workspace #ffffff #ffffff #000000
+	focused_workspace #ffffff #ffffff #000000
     }
 }
 
