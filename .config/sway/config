@@ -20,6 +20,7 @@ set $browser firefox
 assign [app_id="spotify"] 2
 assign [app_id="org.pulseaudio.pavucontrol"] 2
 assign [app_id="firefox"] 3
+assign [app_id="code"] 4
 
 default_orientation horizontal
 
@@ -32,6 +33,8 @@ exec spotify
 exec pavucontrol
 # Browser
 exec $browser
+# Writer
+exec code
 
 #========================#
 # Appearance and Theming #
@@ -244,8 +247,7 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while echo "$(date +'| %x %A | %I:%M:%S %p |' | tr '[:lower:]' '[:upper:]') "; do sleep 1; done
-
+    status_command while echo "'|' $(~/.config/sway/mem.sh) '|' ⚙️ CPU: $(~/.config/sway/cpu.sh)% $(date +'| 🗓️ %x %A | 🕐 %I:%M:%S %p |' | tr '[:lower:]' '[:upper:]') "; do sleep 1; done
 
     colors {
         statusline #ffffff
