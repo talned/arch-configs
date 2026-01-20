@@ -18,11 +18,11 @@ alias swaycon='vim ~/.config/sway/config'
 alias rm='trash'
 
 # Custom PS1 Prompt
-PS1='\033[90m[\033[34m\u'
+PS1='[\u'
 if [[ -f "$HOME/.show_hostname" ]]; then
-  PS1+='\033[97m@\033[36m\h'
+  PS1+='@\h'
 fi
-PS1+='\033[90m \033[32m\W\033[90m]\033[90m$\033[0m '
+PS1+=' \W]$ '
 
 # Functions
 show-host() {
@@ -38,3 +38,4 @@ show-host() {
   
   source ~/.bashrc
 }
+
