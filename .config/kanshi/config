@@ -2,14 +2,14 @@ profile "Screen Only" {
   output eDP-1 enable mode 1920x1200 position 0,0 scale 1.35
 }
 
+profile "Both Displays" {
+  output eDP-1 enable mode 1920x1200 position 0,900 scale 1.35
+  output HDMI-A-1 enable mode 1920x1080 position 0,0 scale 1.2
+}
+
 profile "Laptop Only" {
   output eDP-1 enable mode 1920x1200 position 0,0 scale 1.35
   output HDMI-A-1 disable
-}
-
-profile "Both Displays" {
-  output eDP-1 enable mode 1920x1200 position 0,0 scale 1.35
-  output HDMI-A-1 enable mode 1920x1080 position 1920,0 scale 1.2
 }
 
 profile "External Only" {

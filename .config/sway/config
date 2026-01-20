@@ -77,7 +77,7 @@ titlebar_border_thickness 2
 font pango:monospace 12
 
 # Output configuration
-output * bg /home/tal/Pictures/background.jpg fill
+output * bg /home/tal/.config/sway/nothing.jpg fill
 output * enable
 
 # Settings
@@ -85,9 +85,9 @@ output * enable
 focus_follows_mouse always
 mouse_warping container
 
-output HDMI-A-1 resolution 1920x1080 position 1920 0
+output HDMI-A-1 resolution 1920x1080 position 0 0
 output HDMI-A-1 scale 1.2
-output eDP-1 resolution 1920x1200 position 0 0
+output eDP-1 resolution 1920x1200 position 0 900
 output eDP-1 scale 1.35
 
 # Input configuration
@@ -247,7 +247,7 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while echo "'|' $(~/.config/sway/mem.sh) '|' ⚙️ CPU: $(~/.config/sway/cpu.sh)% $(date +'| 🗓️ %x %A | 🕐 %I:%M:%S %p |' | tr '[:lower:]' '[:upper:]') "; do sleep 1; done
+    status_command while echo "'|' $(~/.config/sway/mem.sh) '|' CPU: $(~/.config/sway/cpu.sh)% $(date +'| %x %A | %I:%M:%S %p |' | tr '[:lower:]' '[:upper:]') "; do sleep 1; done
 
     colors {
         statusline #ffffff
