@@ -106,6 +106,8 @@ input type:touchpad {
     bindsym $mod+n exec spotify
     bindsym $mod+Shift+v exec pavucontrol
     bindsym $mod+Shift+o exec obs
+    bindsym $mod+CTRL+p exec /usr/lib/packettracer/packettracer.AppImage
+    bindsym $mod+z exec woomer --all-outputs --spotlight-radius 1920
 
     # Scripts
     bindsym $mod+Shift+p exec cycle-display
@@ -119,6 +121,10 @@ input type:touchpad {
     # Change normal to inverse to use left mouse button for resizing and right
     # mouse button for dragging.
     floating_modifier $mod normal
+
+    # Focus on Urgent Windows
+    bindsym $mod+q [urgent=latest] focus
+
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
