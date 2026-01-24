@@ -130,7 +130,13 @@
             "type": "kernel"
         },
         {
-            "type": "uptime"
+	        "type": "uptime"
+        },
+        {
+        	"type": "command",
+	        "key": "OS Age",
+	        "keyColor": "cyan",
+	        "text": "echo $(($(date +%d) - $(date -d @$(stat -c %W /) +%d))) days"
         },
         {
             "type": "packages"
