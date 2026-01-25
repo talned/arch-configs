@@ -272,7 +272,7 @@ bar {
         statusline #ffffff
         background #000000
         inactive_workspace #000000 #000000 #ffffff
-		focused_workspace #ffffff #000000 #ffffff
+        focused_workspace #ffffff #000000 #ffffff
     }
 }
 
