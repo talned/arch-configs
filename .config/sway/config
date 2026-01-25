@@ -69,7 +69,7 @@ default_border pixel 1
 
 # Increase titlebar font size
 titlebar_border_thickness 1
-font pango:monospace 12
+font pango:monospace 13
 titlebar_padding 10 3
 
 # Gaps
@@ -253,14 +253,13 @@ bindsym $mod+r mode "resize"
 # Status Bar:
 bar {
     position top
-    font pango:monospace 14
+    font pango:monospace 15
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
     status_command while echo "'|' $(~/.config/sway/mem.sh) '|' CPU: $(~/.config/sway/cpu.sh)% $(date +'| %x %A | %I:%M:%S %p |' | tr '[:lower:]' '[:upper:]') "; do sleep 1; done
 
-    status_padding 100
-    height 29
+    height 30
 
     colors {
         statusline #ffffff
