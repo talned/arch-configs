@@ -1,5 +1,7 @@
 # Welcome to Tal's Sway Config
 
+# This configuration features a simple black theme
+
 ### Startup
 exec kanshi &
 
