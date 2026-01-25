@@ -1,9 +1,0 @@
-{
-    "workbench.startupEditor": "none",
-    "workbench.colorTheme": "Simple Black Theme",
-    "markdowntable.formatOnSave": true,
-    "markdowntable.showMenu.csvToTable": true,
-    "workbench.productIconTheme": "material-product-icons",
-    "workbench.iconTheme": "material-icon-theme",
-    "editor.mouseWheelZoom": true,
-}
