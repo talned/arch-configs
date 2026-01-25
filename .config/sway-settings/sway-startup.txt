@@ -1,5 +1,0 @@
-# Startup Commands
-exec kanshi &
-output eDP-1 enable
-
-

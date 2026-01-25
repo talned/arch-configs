@@ -2,7 +2,6 @@
 
 ### Startup
 exec kanshi &
-output eDP-1 enable
 
 # Variables
 # Logo key. Use Mod1 for Alt.
@@ -40,55 +39,52 @@ exec code
 # Appearance and Theming #
 #========================#
 
-set $black       #000000
-set $white       #ffffff
-set $grey        #2a2a2a
-set $white_grey  #dddddd
-set $red         #900000
-set $bblack      #161616
-set $color1      #222222
-set $color2      #0F0F0F
-set $color3      #333333
-set $color4      #6E6E6E
+# Unused Colors
+#set $grey        #2a2a2a
+#set $white_grey  #dddddd
+#set $bblack      #020202
+#set $color1      #222222
+
+# Currently Appplied Colors
+set $black          #000000
+set $white          #ffffff
+set $red            #900000
+set $blue           #0076BF
+set $off_black      #0F0F0F
+set $medium_grey    #333333
+set $dark_grey      #272727
+set $light_grey     #aaaaaa
 
 # Client Colors
 # Format: client.[state] [border] [background] [text] [indicator] [child_border]
 
-client.focused           $white  $black  $white  $white   $white
+client.focused           $blue $black $white $white $white
 
-client.focused_inactive  $color3 $color1 $color4 $color2  $color2
+client.unfocused         $black $dark_grey $light_grey $red $medium_grey
 
-#client.unfocused         $grey   $bblack $white $red   $grey
-
-#client.urgent            $red    $black  $white $red   $red
-
-#client.focused_tab_title $white  $black  $white $red   $white
-
-# Format: client.background [background]
-
-#client.background $black
+client.focused_inactive  $black $dark_grey $light_grey $off_black $off_black
 
 # Window Customisation
 default_border pixel 1
 hide_edge_borders smart
 
 # Increase titlebar font size
-titlebar_border_thickness 2
-font pango:monospace 12
+titlebar_border_thickness 1
+font pango:monospace 10
 
 # Output configuration
 output * bg /home/tal/.config/sway/nothing.jpg fill
-output * enable
+
+output eDP-1 enable
+output eDP-1 resolution 1920x1200 position 0 0
+output eDP-1 scale 1.35
+
+output HDMI-A-1 disable
 
 # Settings
 # Focus follows mouse when switching with keyboard
 focus_follows_mouse always
 mouse_warping container
-
-output HDMI-A-1 resolution 1920x1080 position 0 0
-output HDMI-A-1 scale 1.2
-output eDP-1 resolution 1920x1200 position 0 900
-output eDP-1 scale 1.35
 
 # Input configuration
 input type:touchpad {
@@ -105,9 +101,10 @@ input type:touchpad {
     bindsym $mod+Shift+r exec dconf-editor
     bindsym $mod+n exec spotify
     bindsym $mod+Shift+v exec pavucontrol
-    bindsym $mod+Shift+o exec obs
-    bindsym $mod+CTRL+p exec /usr/lib/packettracer/packettracer.AppImage
-    bindsym $mod+z exec woomer --all-outputs --spotlight-radius 1920
+    bindsym $mod+CTRL+d exec discord --ozone-platform=wayland
+    #bindsym $mod+Shift+o exec obs
+    #bindsym $mod+CTRL+p exec /usr/lib/packettracer/packettracer.AppImage
+    #bindsym $mod+z exec woomer --all-outputs --spotlight-radius 1920
 
     # Scripts
     bindsym $mod+Shift+p exec cycle-display
