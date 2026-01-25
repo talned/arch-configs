@@ -68,7 +68,7 @@ client.focused           $white $black $white $white $white
 
 client.unfocused         $black $dark_grey $light_grey $red $grey_black
 
-client.focused_inactive  $black $dark_grey $light_grey $off_black $dark_grey
+client.focused_inactive  $black $dark_grey $light_grey $off_black $grey_black
 
 client.focused_tab_title $off_black $black $white $red $white
 
