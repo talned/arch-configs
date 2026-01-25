@@ -69,7 +69,7 @@ default_border pixel 1
 
 # Increase titlebar font size
 titlebar_border_thickness 1
-font pango:monospace 13
+font pango:Inter Display Medium 13
 titlebar_padding 10 3
 
 # Gaps
