@@ -1,1 +1,0 @@
-/home/tal/.config/sway/config.d/

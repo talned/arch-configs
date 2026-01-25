@@ -1,4 +1,4 @@
-# Welcome to Tal's Sway Config
+# SWAY CONFIG
 
 ### Startup
 exec kanshi &
@@ -39,52 +39,47 @@ exec code
 # Appearance and Theming #
 #========================#
 
-# Unused Colors
-#set $grey        #2a2a2a
-#set $white_grey  #dddddd
-#set $bblack      #020202
-#set $color1      #222222
-
-# Currently Appplied Colors
-set $black          #000000
-set $white          #ffffff
-set $red            #900000
-set $blue           #0076BF
-set $off_black      #000000FF
-set $grey_black     #010101
-set $medium_grey    #333333
-set $dark_grey      #272727
-set $light_grey     #aaaaaa
+set $black       #000000
+set $white       #ffffff
+set $grey        #2a2a2a
+set $white_grey  #dddddd
+set $red         #900000
+set $bblack      #020202
+set $blue        #0076BF
+set $color1      #222222
+set $color2      #0F0F0F
+set $color3      #333333
+set $color4      #6E6E6E
+set $color5      #272727
+set $color6      #616161
 
 # Client Colors
 # Format: client.[state] [border] [background] [text] [indicator] [child_border]
 
-client.focused           $white $black $white $white $white
+client.focused           $blue  $black  $white  $white $white
 
-client.unfocused         $black $dark_grey $light_grey $red $grey_black
+client.unfocused         $black $color5 $color6 $red   $color3
 
-client.focused_inactive  $black $dark_grey $light_grey $off_black $dark_grey
+#client.focused_inactive  $black $black $black $black  $black
 
-client.focused_tab_title $off_black $black $white $red $white
+#client.urgent            $red    $black  $white $red   $red
+
+#client.focused_tab_title $black $black $white $red $black
+
+# Format: client.background [background]
+
+#client.background $black
 
 # Window Customisation
 default_border pixel 1
-#hide_edge_borders smart
+hide_edge_borders smart
 
 # Increase titlebar font size
 titlebar_border_thickness 1
-font pango:monospace 12
-titlebar_padding 10 3
-
-# Gaps
-gaps outer 5
-
-#========================#
-#       Adjustments      #
-#========================#
+font pango:monospace 10
 
 # Output configuration
-output * bg ~/.config/sway/nothing.jpg fill
+output * bg /home/tal/.config/sway/nothing.jpg fill
 
 output eDP-1 enable
 output eDP-1 resolution 1920x1200 position 0 0
@@ -114,8 +109,7 @@ input type:touchpad {
     bindsym $mod+Shift+v exec pavucontrol
     bindsym $mod+CTRL+d exec discord --ozone-platform=wayland
     #bindsym $mod+Shift+o exec obs
-    bindsym $mod+CTRL+p exec /usr/lib/packettracer/packettracer.AppImage
-    bindsym alt+1 [title="Cisco Packet Tracer"] focus
+    #bindsym $mod+CTRL+p exec /usr/lib/packettracer/packettracer.AppImage
     #bindsym $mod+z exec woomer --all-outputs --spotlight-radius 1920
 
     # Scripts
@@ -132,7 +126,8 @@ input type:touchpad {
     floating_modifier $mod normal
 
     # Focus on Urgent Windows
-    bindsym alt+w [urgent=latest] focus
+    bindsym $mod+q [urgent=latest] focus
+
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
@@ -263,14 +258,11 @@ bar {
     # The default just shows the current date and time.
     status_command while echo "'|' $(~/.config/sway/mem.sh) '|' CPU: $(~/.config/sway/cpu.sh)% $(date +'| %x %A | %I:%M:%S %p |' | tr '[:lower:]' '[:upper:]') "; do sleep 1; done
 
-    status_padding 100
-    height 29
-
     colors {
         statusline #ffffff
         background #000000
-        inactive_workspace #000000 #000000 #ffffff
-	focused_workspace #ffffff #000000 #ffffff
+        inactive_workspace #ffffffff #000000ff #ffffff
+	focused_workspace #ffffff #ffffff #000000
     }
 }
 

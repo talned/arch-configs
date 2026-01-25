@@ -1,1 +1,4 @@
-/home/tal/.config/sway/mem.sh
+#!/bin/bash
+
+free -b | awk '/^Mem:/ {used=$3/1024/1024/1024; total=$2/1024/1024/1024; printf("%.1f G / %.1f G\n", used, total)}'
+

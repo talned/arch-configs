@@ -1,0 +1,212 @@
+{
+	"$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+	"logo": {
+		"type": "builtin",
+		"source": "arch",
+		"color": {
+			"1": "37",
+			"2": "37",
+			"3": "37",
+			"4": "37",
+			"5": "37",
+			"6": "37",
+			"7": "37",
+			"8": "37",
+			"9": "37"
+		},
+		"width": null,
+		"height": null,
+		"padding": {
+			"top": 0,
+			"left": 0,
+			"right": 6
+		},
+		"printRemaining": true,
+		"preserveAspectRatio": true,
+		"recache": false,
+		"position": "left",
+		"chafa": {
+			"fgOnly": false,
+			"symbols": "block+border+space-wide-inverted"
+		}
+	},
+	"display": {
+		"stat": false,
+		"pipe": false,
+		"showErrors": false,
+		"disableLinewrap": true,
+		"hideCursor": false,
+		"separator": ": ",
+		"color": {
+			"keys": "36",
+			"title": "96",
+			"output": "37",
+			"separator": "36"
+		},
+		"brightColor": true,
+		"duration": {
+			"abbreviation": false,
+			"spaceBeforeUnit": "default"
+		},
+		"size": {
+			"maxPrefix": "YB",
+			"binaryPrefix": "iec",
+			"ndigits": 2,
+			"spaceBeforeUnit": "default"
+		},
+		"temp": {
+			"unit": "C",
+			"ndigits": 1,
+			"color": {
+				"green": "32",
+				"yellow": "33",
+				"red": "31"
+			},
+			"spaceBeforeUnit": "default"
+		},
+		"percent": {
+			"type": [
+				"num",
+				"num-color"
+			],
+			"ndigits": 0,
+			"color": {
+				"green": "32",
+				"yellow": "33",
+				"red": "31"
+			},
+			"spaceBeforeUnit": "default",
+			"width": 0
+		},
+		"bar": {
+			"char": {
+				"elapsed": "█",
+				"total": "░"
+			},
+			"border": {
+				"left": "[",
+				"right": "]",
+				"leftElapsed": "",
+				"rightElapsed": ""
+			},
+			"color": {
+				"elapsed": "36",
+				"total": "90",
+				"border": "36"
+			},
+			"width": 24
+		},
+		"fraction": {
+			"ndigits": 2
+		},
+		"noBuffer": false,
+		"key": {
+			"width": 0,
+			"type": "string",
+			"paddingLeft": 0
+		},
+		"freq": {
+			"ndigits": 2,
+			"spaceBeforeUnit": "default"
+		},
+		"constants": []
+	},
+	"general": {
+		"thread": true,
+		"processingTimeout": 5000,
+		"detectVersion": true,
+		"playerName": "",
+		"dsForceDrm": false
+	},
+	"modules": [
+		{
+			"type": "custom",
+			"format": "───────────────────────────────────────────────────────"
+		},
+		{
+			"type": "os"
+		},
+		{
+			"type": "kernel"
+		},
+		{
+			"type": "uptime"
+		},
+		{
+			"type": "command",
+			"key": "OS Age",
+			"keyColor": "cyan",
+			"text": "echo $(($(date +%d) - $(date -d @$(stat -c %W /) +%d))) days"
+		},
+		{
+			"type": "packages"
+		},
+		{
+			"type": "custom",
+			"format": "───────────────────────────────────────────────────────"
+		},
+		{
+			"type": "de",
+			"key": "DE"
+		},
+		{
+			"type": "wm"
+		},
+		{
+			"type": "theme"
+		},
+		{
+			"type": "terminal"
+		},
+		{
+			"type": "terminalfont"
+		},
+		{
+			"type": "custom",
+			"format": "───────────────────────────────────────────────────────"
+		},
+		{
+			"type": "cpu"
+		},
+		{
+			"type": "gpu"
+		},
+		{
+			"type": "memory"
+		},
+		{
+			"type": "swap"
+		},
+		{
+			"type": "disk"
+		},
+		{
+			"type": "custom",
+			"format": "───────────────────────────────────────────────────────"
+		},
+		{
+			"type": "battery"
+		},
+		{
+			"type": "locale"
+		},
+		{
+			"type": "custom",
+			"format": "───────────────────────────────────────────────────────"
+		},
+		{
+			"type": "colors",
+			"key": " ",
+			"keyIcon": "",
+			"symbol": "block",
+			"paddingLeft": 0,
+			"block": {
+				"width": 3,
+				"range": [
+					0,
+					15
+				]
+			}
+		}
+	]
+}
