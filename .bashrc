@@ -3,6 +3,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+eval "$(zoxide init bash --cmd cd)"
+
 # Environment Variables
 export EMACS_CONFIG_DIR="$HOME/.config/emacs"
 
@@ -52,6 +54,3 @@ gitui() {
   command gitui "$@"
 }
 
-echo ""
-read -p "Press Enter to continue: "
-clear
