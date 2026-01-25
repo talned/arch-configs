@@ -39,3 +39,19 @@ show-host() {
   source ~/.bashrc
 }
 
+gitui() {
+  # Start SSH agent if not already running
+  if [ -z "$SSH_AUTH_SOCK" ]; then
+    eval "$(ssh-agent -s)" > /dev/null
+  fi
+  
+  # Add your SSH key
+  ssh-add ~/.ssh/id_ed25519 2>/dev/null
+  
+  # Launch gitui
+  command gitui "$@"
+}
+
+echo ""
+read -p "Welcome to Talned bash configuration. Press Enter to continue: "
+clear
