@@ -53,5 +53,5 @@ gitui() {
 }
 
 echo ""
-read -p "Welcome to Talned bash configuration. Press Enter to continue: "
+read -p "Press Enter to continue: "
 clear
