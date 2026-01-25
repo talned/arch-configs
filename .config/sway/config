@@ -109,6 +109,7 @@ input type:touchpad {
     bindsym $mod+n exec spotify
     bindsym $mod+Shift+v exec pavucontrol
     bindsym $mod+CTRL+d exec discord --ozone-platform=wayland
+    bindsym $mod+CTRL+o exec okular
     #bindsym $mod+Shift+o exec obs
     bindsym $mod+CTRL+p exec /usr/lib/packettracer/packettracer.AppImage
     bindsym alt+1 [title="Cisco Packet Tracer"] focus
