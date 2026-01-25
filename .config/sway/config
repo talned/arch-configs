@@ -44,21 +44,13 @@ exec code
 # Appearance and Theming #
 #========================#
 
-# Unused Colors
-#set $grey        #2a2a2a
-#set $white_grey  #dddddd
-#set $bblack      #020202
-#set $color1      #222222
-
 # Currently Appplied Colors
 set $black          #000000
 set $white          #ffffff
 set $red            #900000
-set $blue           #0076BF
-set $off_black      #000000FF
-set $grey_black     #010101
-set $medium_grey    #333333
+set $near_black     #010101
 set $dark_grey      #272727
+set $medium_grey    #333333
 set $light_grey     #aaaaaa
 
 # Client Colors
@@ -66,11 +58,11 @@ set $light_grey     #aaaaaa
 
 client.focused           $white $black $white $white $white
 
-client.unfocused         $black $dark_grey $light_grey $red $grey_black
+client.unfocused         $black $dark_grey $light_grey $red $near_black
 
-client.focused_inactive  $black $dark_grey $light_grey $off_black $grey_black
+client.focused_inactive  $black $dark_grey $light_grey $black $near_black
 
-client.focused_tab_title $off_black $black $white $red $white
+client.focused_tab_title $black $black $white $red $white
 
 # Window Customisation
 default_border pixel 1
