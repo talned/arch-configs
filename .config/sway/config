@@ -49,17 +49,15 @@ set $black          #000000
 set $white          #ffffff
 set $red            #900000
 set $near_black     #010101
-set $grey           #111111
-set $light_grey     #909090
 
 # Client Colors
 # Format: client.[state] [border] [background] [text] [indicator] [child_border]
 
 client.focused           $white $black $white $white $white
 
-client.unfocused         $black $grey $light_grey $red $near_black
+client.unfocused         $black $black $black $red $near_black
 
-client.focused_inactive  $black $grey $light_grey $black $near_black
+client.focused_inactive  $black $black $black $black $near_black
 
 client.focused_tab_title $black $black $white $red $white
 
