@@ -56,6 +56,7 @@
 	"breadcrumbs.enabled": false,
 	"security.workspace.trust.untrustedFiles": "open",
 	"git.openRepositoryInParentFolders": "never",
-	"workbench.editor.showTabs": "none",
 	"editor.detectIndentation": false,
+	"editor.renderWhitespace": "none",
+	"git.confirmSync": false,
 }
