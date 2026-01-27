@@ -18,6 +18,7 @@ alias lla='lsd -lah --group-dirs first --icon=never --color=never'
 alias grep='grep --color=auto'
 alias swaycon='vim ~/.config/sway/config'
 alias rm='trash'
+alias icat="kitten icat"
 
 # Custom PS1 Prompt
 PS1='[\u'
@@ -39,18 +40,5 @@ show-host() {
   fi
   
   source ~/.bashrc
-}
-
-gitui() {
-  # Start SSH agent if not already running
-  if [ -z "$SSH_AUTH_SOCK" ]; then
-    eval "$(ssh-agent -s)" > /dev/null
-  fi
-  
-  # Add your SSH key
-  ssh-add ~/.ssh/id_ed25519 2>/dev/null
-  
-  # Launch gitui
-  command gitui "$@"
 }
 
