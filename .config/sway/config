@@ -111,7 +111,7 @@ input type:touchpad {
     bindsym $mod+CTRL+o exec okular
     #bindsym $mod+Shift+o exec obs
     bindsym $mod+CTRL+p exec /usr/lib/packettracer/packettracer.AppImage
-    bindsym alt+tab+w [title="Cisco Packet Tracer"] focus
+    bindsym $mod+shift+w [title="Cisco Packet Tracer"] focus
     #bindsym $mod+z exec woomer --all-outputs --spotlight-radius 1920
 
     # Scripts
@@ -128,7 +128,7 @@ input type:touchpad {
     floating_modifier $mod normal
 
     # Focus on Urgent Windows
-    bindsym alt+w [urgent=latest] focus
+    bindsym $mod+w [urgent=latest] focus
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
@@ -190,7 +190,7 @@ input type:touchpad {
 
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
+    bindsym $mod+d layout tabbed
     bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen

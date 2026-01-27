@@ -59,4 +59,5 @@
 	"editor.detectIndentation": false,
 	"editor.renderWhitespace": "none",
 	"git.confirmSync": false,
+	"workbench.editor.showTabs": "none",
 }
