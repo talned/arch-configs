@@ -14,12 +14,12 @@ STATE=$(cat "$CONFIG_FILE")
 
 case $STATE in
     0)
-	# Laptop Only
+        # Laptop Only
         kanshictl switch "Laptop Only"
         echo "1" > "$CONFIG_FILE"
         ;;
     1)
- 	# Both Displays
+        # Both Displays
         kanshictl switch "Both Displays"
         echo "2" > "$CONFIG_FILE"
         ;;
