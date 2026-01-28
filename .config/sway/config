@@ -44,23 +44,30 @@ exec code
 # Appearance and Theming #
 #========================#
 
-# Currently Appplied Colors
+# Colors for Borders And Tabs
 set $black          #000000
 set $white          #ffffff
-set $red            #900000
-set $near_black     #010101
-set $grey           #999999
 
-# Client Colors
+# Color is for Unfocused & Inactive window
+set $near_black     #010101
+
+# Color for Urgent Windows
+set $red            #900000
+
+# Colors for Unfocused Tab Title
+set $grey_bg        #272727
+set $grey_text      #909090
+
+# Apply Colors to Sway Windows
 # Format: client.[state] [border] [background] [text] [indicator] [child_border]
 
 client.focused           $white $black $white $white $white
 
-client.unfocused         $black $black $grey $red $near_black
+client.unfocused         $white $grey_bg $grey_text $red $near_black
 
-client.focused_inactive  $black $black $grey $black $near_black
+client.focused_inactive  $black $black $white $red $near_black
 
-client.focused_tab_title $black $black $white $red $white
+client.focused_tab_title $white $black $white $grey_bg $white
 
 # Window Customisation
 default_border pixel 1
@@ -68,7 +75,7 @@ default_border pixel 1
 
 # Increase titlebar font size
 titlebar_border_thickness 1
-font pango:Inter Display Medium 13
+font pango 12
 titlebar_padding 10 3
 
 # Gaps
@@ -95,6 +102,7 @@ mouse_warping container
 # Input configuration
 input type:touchpad {
 	natural_scroll enabled
+	dwt disabled
 }
 
 # Key bindings
