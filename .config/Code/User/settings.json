@@ -67,5 +67,6 @@
 	},
 	"workbench.sideBar.location": "right",
 	"chat.extensionUnification.enabled": false,
-	"chat.viewSessions.enabled": false
+	"chat.viewSessions.enabled": false,
+	"editor.wordWrap": "on"
 }
