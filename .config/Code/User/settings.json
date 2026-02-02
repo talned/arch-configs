@@ -1,6 +1,8 @@
 {
 	// EXTENSIONS
 	/*
+	Color Highlight
+	Github Copilot Chat
 	Markdown Inline Editor
 	Markdown Table
 	Material Icon Theme
@@ -40,11 +42,9 @@
 	"window.controlsStyle": "hidden",
 	"window.menuBarVisibility": "hidden",
 	"editor.minimap.enabled": false,
-	"workbench.sideBar.location": "right",
 	"workbench.activityBar.location": "hidden",
 	"window.commandCenter": false,
 	"chat.agent.enabled": false,
-	"chat.disableAIFeatures": true,
 	"editor.smoothScrolling": true,
 	"editor.lightbulb.enabled": "off",
 	"terminal.integrated.cursorBlinking": false,
@@ -60,4 +60,12 @@
 	"editor.renderWhitespace": "none",
 	"git.confirmSync": false,
 	"workbench.editor.showTabs": "none",
+	"extensions.ignoreRecommendations": true,
+	"github.copilot.nextEditSuggestions.enabled": true,
+	"github.copilot.enable": {
+		"*": false
+	},
+	"workbench.sideBar.location": "right",
+	"chat.extensionUnification.enabled": false,
+	"chat.viewSessions.enabled": false
 }

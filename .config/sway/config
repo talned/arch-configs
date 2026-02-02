@@ -88,11 +88,15 @@ gaps outer 5
 # Output configuration
 output * bg ~/.config/sway/nothing.jpg fill
 
-output eDP-1 enable
-output eDP-1 resolution 1920x1200 position 0 0
-output eDP-1 scale 1.35
+# Laptop Screen
+output eDP-1 disable
+#output eDP-1 resolution 1920x1200 position 0 0
+#output eDP-1 scale 1.35
 
-output HDMI-A-1 disable
+# Monitor Screen
+output HDMI-A-1 enable
+output HDMI-A-1 resolution 1920x1080 position 0 0
+output HDMI-A-1 scale 1.2
 
 # Settings
 # Focus follows mouse when switching with keyboard
