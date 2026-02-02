@@ -198,6 +198,9 @@ input type:touchpad {
     bindsym $mod+Shift+9 move container to workspace number 9
     bindsym $mod+Shift+0 move container to workspace number 10
 
+    bindsym $mod+CTRL+1 move workspace to output eDP-1
+    bindsym $mod+CTRL+2 move workspace to output HDMI-A-1
+
 # Layout stuff:
     # horizontal and vertical splits
     bindsym $mod+o splith
