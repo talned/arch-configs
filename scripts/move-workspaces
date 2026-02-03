@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# ----------------------------
+# Move Workspaces Script
+# By Talmed
+# File goes to /usr/local/bin
+# ----------------------------
+
+# Check for flag
+if [ "$1" == "--laptop" ]; then
+    SOURCE="HDMI-A-1"
+    DEST="eDP-1"
+elif [ "$1" == "--monitor" ]; then
+    SOURCE="eDP-1"
+    DEST="HDMI-A-1"
+else
+    echo "Usage: $0 [--laptop|--monitor]"
+    echo "  --laptop:  Move all workspaces to eDP-1 (laptop screen)"
+    echo "  --monitor: Move all workspaces to HDMI-A-1 (external monitor)"
+    exit 1
+fi
+
+# Get the list of workspaces on source output
+WORKSPACES=$(swaymsg -t get_workspaces | jq -r ".[] | select(.output==\"$SOURCE\") | .name" | paste -sd ',')
+
+echo "Moving workspaces: $WORKSPACES from $SOURCE to $DEST"
+
+# Move each workspace
+swaymsg -t get_workspaces | jq -r ".[] | select(.output==\"$SOURCE\") | .name" | while read workspace; do
+    swaymsg "workspace $workspace; move workspace to output $DEST"
+done
+
+echo "Done!"
+
