@@ -63,9 +63,9 @@ set $grey_text      #909090
 
 client.focused           $white $black $white $white $white
 
-client.unfocused         $black $grey_bg $grey_text $red $near_black
+client.unfocused         $white $grey_bg $grey_text $red $near_black
 
-client.focused_inactive  $black $black $white $red $near_black
+client.focused_inactive  $black $black $white $black $near_black
 
 client.focused_tab_title $white $black $white $grey_bg $white
 
@@ -276,7 +276,7 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while echo "'|' $(~/.config/sway/mem.sh) '|' CPU: $(~/.config/sway/cpu.sh)% $(LC_TIME=C date +'| %x %A | %I:%M:%S %p |') "; do sleep 1; done
+    status_command while echo "'|' $(~/.config/sway/mem.sh) '|' CPU: $(~/.config/sway/cpu.sh) $(LC_TIME=C date +'| %d/%m/%Y %A | %I:%M:%S %p |') "; do sleep 1; done
 
     height 30
 

@@ -84,5 +84,6 @@
 	"github.copilot.nextEditSuggestions.fixes": false,
 	"github.copilot.nextEditSuggestions.allowWhitespaceOnlyChanges": false,
 	"github.copilot.editor.enableCodeActions": false,
-	"workbench.editor.empty.hint": "hidden"
+	"workbench.editor.empty.hint": "hidden",
+	"terminal.integrated.initialHint": false
 }

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-top -bn1 | grep "Cpu(s)" | awk '{print 100-$8}'
+mpstat 1 1 | awk '/Average/ {print 100-$NF"%"}'
