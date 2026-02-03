@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Sway Focus First Tab Script
+# Purpose: Focuses on the first tab in a tabbed or stacked container layout
+# Usage: Run this script or bind it to a key in your sway config
+# Installation: Save to /usr/local/bin/sway-focus-first-tab and make executable:
+#   sudo cp sway-focus-first-tab /usr/local/bin/
+#   sudo chmod +x /usr/local/bin/sway-focus-first-tab
+# Sway config binding example:
+#   bindsym $mod+Home exec /usr/local/bin/sway-focus-first-tab
+
+# Get the focused container's ID
+focused_id=$(swaymsg -t get_tree | jq '.. | select(.focused? == true) | .id')
+
+# Find the parent container and get its first child
+first_child=$(swaymsg -t get_tree | jq -r --arg fid "$focused_id" '
+  .. | 
+  select(.nodes? != null) |
+  select(.nodes[]?.id == ($fid | tonumber)) |
+  .nodes[0].id
+')
+
+# Focus on the first child
+swaymsg "[con_id=$first_child]" focus
