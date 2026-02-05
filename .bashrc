@@ -7,7 +7,6 @@ eval "$(zoxide init bash --cmd cd)"
 
 # Environment Variables
 export EMACS_CONFIG_DIR="$HOME/.config/emacs"
-export PATH=$PATH:~/Projects/mangowc/build
 export LC_TIME=C
 
 # Aliases
