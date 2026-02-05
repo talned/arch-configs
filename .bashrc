@@ -44,3 +44,20 @@ show-host() {
   source ~/.bashrc
 }
 
+pkghealth() {
+    local total=$(pacman -Q | wc -l)
+    local valid=$(pacman -Qk 2>/dev/null | grep "0 missing files" | wc -l)
+    local percent=$((valid * 100 / total))
+    
+    if [ "$valid" -eq "$total" ]; then
+        echo "✅ System Status: ${percent}% Healthy"
+        echo "   All $total packages intact!"
+    else
+        echo "⚠️  System Status: ${percent}% Healthy ($valid/$total)"
+        echo ""
+        echo "Broken packages:"
+        pacman -Qk 2>/dev/null | grep -v "0 missing files"
+    fi
+}
+
+
