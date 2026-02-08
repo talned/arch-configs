@@ -5,9 +5,6 @@
 #	keybinds based on Tal's preference
 #	Certain Tweaks for Personal Use
 
-### Startup
-exec kanshi &
-
 # Variables
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
@@ -20,24 +17,23 @@ set $right l
 set $term kitty
 set $browser firefox
 
-# Application Rules
-assign [app_id="spotify"] 2
-assign [app_id="org.pulseaudio.pavucontrol"] 2
-assign [app_id="firefox"] 3
-assign [app_id="code"] 4
-
 default_orientation horizontal
 
 # Startup Applications
 # Terminal
+workspace 1
 exec kitty
 # Music
+workspace 2
 exec spotify
 # Volume Control
+workspace 2
 exec pavucontrol
 # Browser
+workspace 3
 exec $browser
 # Writer
+workspace 4
 exec code
 
 #========================#
@@ -63,9 +59,9 @@ set $grey_text      #909090
 
 client.focused           $white $black $white $white $white
 
-client.unfocused         $white $grey_bg $grey_text $red $near_black
+client.unfocused         $black $grey_bg $grey_text $red $near_black
 
-client.focused_inactive  $black $black $white $black $near_black
+client.focused_inactive  $black $grey_bg $grey_text $black $near_black
 
 client.focused_tab_title $white $black $white $grey_bg $white
 
@@ -86,7 +82,7 @@ gaps outer 5
 #========================#
 
 # Output configuration
-output * bg ~/.config/sway/nothing.jpg fill
+output * bg /home/tal/Pictures/background/background.jpg fill
 
 # Laptop Screen
 #output eDP-1 disable
@@ -100,6 +96,8 @@ output * bg ~/.config/sway/nothing.jpg fill
 
 # Let kanshi to handle the display
 exec_always kanshictl reload
+
+#include outputs
 
 # Settings
 # Focus follows mouse when switching with keyboard
@@ -119,12 +117,12 @@ input type:touchpad {
     #bindsym $mod+Shift+Return exec emacsclient -c -a 'emacs'
     bindsym $mod+Shift+Return exec code
     bindsym $mod+b exec $browser
-    bindsym $mod+Shift+r exec dconf-editor
+    bindsym $mod+Shift+r exec themix-gui
     bindsym $mod+n exec spotify
     bindsym $mod+Shift+v exec pavucontrol
     bindsym $mod+CTRL+d exec discord --ozone-platform=wayland
     bindsym $mod+CTRL+o exec okular
-    #bindsym $mod+Shift+o exec obs
+    bindsym $mod+Shift+o exec obs
     bindsym $mod+CTRL+p exec /usr/lib/packettracer/packettracer.AppImage
     bindsym $mod+shift+w exec sway-focus-first-tab
     #bindsym $mod+z exec woomer --all-outputs --spotlight-radius 1920
@@ -150,6 +148,8 @@ input type:touchpad {
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit Sway?' -B 'Yes, exit sway' 'swaymsg exit'
+
+    bindsym $mod+F1 exec swaylock-fancy -F -e -L -d
 
 # Moving around:
     # Move your focus around
@@ -221,7 +221,7 @@ input type:touchpad {
     bindsym $mod+space focus mode_toggle
 
     # Move focus to the parent container
-    bindsym $mod+a focus parent
+    bindsym $mod+tab focus parent
 
 # Scratchpad:
     # Sway has a "scratchpad", which is a bag of holding for windows.
@@ -276,7 +276,7 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while echo "'|' $(~/.config/sway/mem.sh) '|' CPU: $(~/.config/sway/cpu.sh) $(LC_TIME=C date +'| %d/%m/%Y %A | %I:%M:%S %p |') "; do sleep 1; done
+    status_command while echo "'|' $(~/.config/sway/mem.sh) '|' CPU: $(~/.config/sway/cpu.sh) $(LC_TIME=C date +'| %d/%m/%Y %A | %I:%M:%S %p |') "; do sleep 0; done
 
     height 30
 

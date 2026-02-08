@@ -40,9 +40,7 @@
 	"files.autoSaveDelay": 1,
 	"workbench.tips.enabled": false,
 	"window.controlsStyle": "hidden",
-	"window.menuBarVisibility": "hidden",
 	"editor.minimap.enabled": false,
-	"workbench.activityBar.location": "hidden",
 	"window.commandCenter": false,
 	"chat.agent.enabled": false,
 	"editor.smoothScrolling": true,
@@ -76,8 +74,6 @@
 	"github.copilot.chat.anthropic.tools.websearch.enabled": true,
 	"github.copilot.chat.backgroundAgent.enabled": false,
 	"github.copilot.chat.copilotDebugCommand.enabled": false,
-	"github.copilot.chat.edits.suggestRelatedFilesForTests": false,
-	"github.copilot.chat.edits.suggestRelatedFilesFromGitHistory": false,
 	"github.copilot.chat.reviewAgent.enabled": false,
 	"github.copilot.renameSuggestions.triggerAutomatically": false,
 	"github.copilot.nextEditSuggestions.extendedRange": false,
@@ -85,5 +81,12 @@
 	"github.copilot.nextEditSuggestions.allowWhitespaceOnlyChanges": false,
 	"github.copilot.editor.enableCodeActions": false,
 	"workbench.editor.empty.hint": "hidden",
-	"terminal.integrated.initialHint": false
+	"terminal.integrated.initialHint": false,
+	"window.menuBarVisibility": "hidden",
+	"workbench.activityBar.location": "hidden",
+	"chat.fontSize": 16,
+	"chat.fontFamily": "Roboto",
+	"chat.editor.fontSize": 16,
+	"chat.editor.fontFamily": "Roboto",
+	"chat.editor.lineHeight": 2.5
 }

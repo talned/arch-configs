@@ -1,0 +1,124 @@
+#!/usr/bin/env bash
+
+CONFIG_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/kanshi/config"
+
+check_config_file() {
+    if [[ ! -f "$CONFIG_FILE" ]]; then
+        echo "Configuration file not found: $CONFIG_FILE"
+        exit 1
+    fi
+}
+
+profile_exists() {
+    local profile="$1"
+    awk -F '"' -v profile="$profile" '/^profile / {if ($2 == profile) found=1} END {exit !found}' "$CONFIG_FILE"
+}
+
+update_config() {
+    local active_profile="$1"
+    local temp_file
+    temp_file=$(mktemp)
+
+    echo "Updating config for profile: \"$active_profile\""
+
+    {
+        awk '/^profile "Screen Only"/ {print; active=1; next} active && /^}/ {print; print ""; exit} active' "$CONFIG_FILE"
+
+        awk -v profile="$active_profile" '$0 ~ "^profile \"" profile "\" {" {print; active=1; next} active && /^}/ {print; print ""; exit} active' "$CONFIG_FILE"
+
+        awk -v current="$active_profile" '
+            BEGIN {
+                exclude["Screen Only"] = 1
+                exclude[current] = 1
+            }
+
+            $0 ~ /^profile / {
+                match($0, /^profile "([^"]+)"/, name)
+                profile_name = name[1]
+
+                if (exclude[profile_name]) {
+                    active = 0
+                    next
+                }
+
+                active = 1
+                print
+                next
+            }
+
+            active {
+                print
+                if ($0 ~ /^}/) {
+                    print ""
+                    active = 0
+                }
+            }
+        ' "$CONFIG_FILE"
+    } > "$temp_file"
+
+    mv "$temp_file" "$CONFIG_FILE"
+    echo "Updated $CONFIG_FILE successfully. Active profile: \"$active_profile\""
+}
+
+get_current_profile() {
+    local current_profile
+    current_profile=$(kanshictl status | awk -F ": " '/Current profile/ {print $2}')
+
+    if [[ -z "$current_profile" ]]; then
+        echo "Error: Unable to retrieve CURRENT_PROFILE from kanshictl."
+        exit 1
+    fi
+
+    if ! profile_exists "$current_profile"; then
+        echo "Error: Current profile \"$current_profile\" does not exist in the kanshi configuration file."
+        exit 1
+    fi
+
+    echo "$current_profile"
+}
+
+choose_profile() {
+    echo "Available profiles:" >&2
+
+    local profile_array=()
+    while IFS= read -r profile; do
+        profile_array+=("$profile")
+    done < <(awk -F '"' '/^profile / {print $2}' "$CONFIG_FILE")
+
+    for i in "${!profile_array[@]}"; do
+        echo "$((i + 1)). ${profile_array[i]}" >&2
+    done
+
+    echo -n "Enter the number corresponding to your desired profile: " >&2
+    read index </dev/tty
+
+    if ! [[ "$index" =~ ^[0-9]+$ ]] || ((index < 1 || index > ${#profile_array[@]})); then
+        echo "Error: Invalid selection." >&2
+        exit 1
+    fi
+
+    echo "${profile_array[index-1]}"
+}
+
+main() {
+    check_config_file
+
+    case "$1" in
+        --current)
+            CURRENT_PROFILE=$(get_current_profile)
+            update_config "$CURRENT_PROFILE"
+            ;;
+        --choose)
+            SELECTED_PROFILE=$(choose_profile)
+            update_config "$SELECTED_PROFILE"
+            ;;
+        *)
+            echo "Usage: $0 [--current|--choose]"
+            echo "  --current    Automatically update the config based on the CURRENT_PROFILE"
+            echo "  --choose     Interactively choose a profile to set as active"
+            exit 1
+            ;;
+    esac
+}
+
+main "$@"
