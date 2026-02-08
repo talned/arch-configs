@@ -203,16 +203,7 @@ The setup uses a **minimal black theme** across the entire environment:
 
 ### Bash Aliases
 
-| Alias | Expands To |
-|---|---|
-| `ls` | `lsd --group-dirs first --icon=never --color=auto` |
-| `la` | `lsd -a --group-dirs first --icon=never --color=auto` |
-| `ll` | `lsd -lh --group-dirs first --icon=never --color=never` |
-| `lla` | `lsd -lah --group-dirs first --icon=never --color=never` |
-| `rm` | `trash` (safe delete via trash-cli) |
-| `swaycon` | `vim ~/.config/sway/config` |
-| `icat` | `kitten icat` (Kitty image viewer) |
-| `start-sway` | `uwsm start sway` |
+Please **read** the [.bashrc](https://github.com/talned/arch-configs/blob/main/.bashrc) file to see the aliases
 
 ### Bash Functions
 
@@ -260,7 +251,6 @@ This copies configs for: VS Code, Fastfetch, Kanshi, Sway (including config.d fr
 - [hyprshot](https://github.com/Gustash/Hyprshot) — Screenshot utility
 - [swaylock-fancy](https://github.com/Big-Bag/swaylock-fancy) — Fancy lock screen
 - [brightnessctl](https://github.com/Hummer12007/brightnessctl) — Backlight control
-- [Picom](https://github.com/yshui/picom) — Compositor (X11 fallback)
 - [Fastfetch](https://github.com/fastfetch-cli/fastfetch) — System information tool
 - [GitUI](https://github.com/extrawurst/gitui) — Terminal Git interface
 - [UWSM](https://github.com/Vladimir-csp/uwsm) — Universal Wayland Session Manager
