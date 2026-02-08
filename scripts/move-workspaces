@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# ----------------------------
-# Move Workspaces Script
-# By Talmed
-# File goes to /usr/local/bin
-# ----------------------------
-
 # Check for flag
 if [ "$1" == "--laptop" ]; then
     SOURCE="HDMI-A-1"
@@ -29,6 +23,8 @@ echo "Moving workspaces: $WORKSPACES from $SOURCE to $DEST"
 swaymsg -t get_workspaces | jq -r ".[] | select(.output==\"$SOURCE\") | .name" | while read workspace; do
     swaymsg "workspace $workspace; move workspace to output $DEST"
 done
+
+swaymsg workspace $(swaymsg -t get_workspaces | jq '.[] | select(.focused==true).num')
 
 echo "Done!"
 

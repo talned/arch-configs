@@ -111,6 +111,7 @@ main() {
         --choose)
             SELECTED_PROFILE=$(choose_profile)
             update_config "$SELECTED_PROFILE"
+            kanshictl reload
             ;;
         *)
             echo "Usage: $0 [--current|--choose]"
