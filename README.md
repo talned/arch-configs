@@ -195,7 +195,6 @@ The setup uses a **minimal black theme** across the entire environment:
 - **Window borders:** 1px pixel border, 5px outer gaps.
 - **Status bar:** Top-positioned swaybar on a black background showing memory usage, CPU usage, date, and time.
 - **VS Code:** "Simple Black Theme" with fully black status/title bars and IBM Plex Mono font.
-- **Picom (X11):** No shadows, no transparency, vsync enabled — purely functional.
 
 ---
 
