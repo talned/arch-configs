@@ -133,7 +133,7 @@ In the **Both Displays** profile the monitor sits at position `(0, 0)` and the l
 
 Three scripts provide flexible ways to switch between profiles:
 
-#### `scripts/cycle-display`
+#### [scripts/cycle-display](https://github.com/talned/arch-configs/blob/main/scripts/cycle-display)
 Bound to `Super + Shift + P` — cycles through profiles in a loop:
 
 ```
@@ -142,7 +142,7 @@ Laptop Only → Both Displays → External Only → Laptop Only → …
 
 State is persisted in `~/.config/sway/display-state`.
 
-#### `scripts/kanshi-laptop-monitor-shuffler`
+#### [scripts/kanshi-laptop-monitor-shuffler](https://github.com/talned/arch-configs/blob/main/scripts/kanshi-laptop-monitor-shuffler)
 An advanced profile manager that rewrites the Kanshi config to set a chosen profile as active:
 
 ```bash
@@ -155,7 +155,7 @@ kanshi-laptop-monitor-shuffler --choose
 
 It always keeps the `"Screen Only"` profile at the top of the config file and reorders the remaining profiles so the selected one comes first.
 
-#### `scripts/move-workspaces`
+#### [scripts/move-workspaces](https://github.com/talned/arch-configs/blob/main/scripts/move-workspaces)
 Bulk-moves all workspaces from one output to another:
 
 ```bash
@@ -165,6 +165,20 @@ move-workspaces --laptop
 # Move all workspaces to the external monitor
 move-workspaces --monitor
 ```
+
+### [scripts/sway-focus-first-tab](https://github.com/talned/arch-configs/blob/main/scripts/sway-focus-first-tab)
+During tabbed mode in Sway, if you have multiple windows stacked as tabs (e.g. tabs A, B, C) and you're currently focused on tab C, there's no built-in Sway keybind to jump straight back to the first tab. You'd have to press focus left repeatedly. This script solves that in one keypress.
+
+Tabbed container
+┌──────────┬──────────┬──────────┐
+│  Tab A   │  Tab B   │  Tab C ◄ │  ← you are here
+└──────────┴──────────┴──────────┘
+
+After running the script:
+
+┌──────────┬──────────┬──────────┐
+│  Tab A ◄ │  Tab B   │  Tab C   │  ← now here
+└──────────┴──────────┴──────────┘
 
 ---
 
