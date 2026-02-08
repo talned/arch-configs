@@ -1,6 +1,266 @@
-# arch-configs
-These configs are part of my standard setup.
+# 🖥️ arch-configs
 
-This isn't very organised and all over the place!
-Test
-another test
+Personal Arch Linux dotfiles and configuration files for a **Sway** (Wayland) desktop environment, featuring a minimal black theme, vim-style keybindings, and smart multi-monitor display management.
+
+---
+
+## ⌨️ Keybindings
+
+The modifier key (`$mod`) is **Super / Logo key** (Mod4). Navigation uses **vim-style** keys (`h` `j` `k` `l`) alongside arrow keys for full compatibility.
+
+### Application Launchers
+
+| Keybind | Action |
+|---|---|
+| `Super + Enter` | Open terminal (Kitty) |
+| `Super + Shift + Enter` | Open VS Code |
+| `Super + B` | Open Firefox |
+| `Super + N` | Open Spotify |
+| `Super + Shift + V` | Open PulseAudio Volume Control (pavucontrol) |
+| `Super + Ctrl + D` | Open Discord (Wayland) |
+| `Super + Ctrl + O` | Open Okular (PDF viewer) |
+| `Super + Shift + O` | Open OBS Studio |
+| `Super + Ctrl + P` | Open Cisco Packet Tracer |
+| `Super + Shift + R` | Open Themix GUI |
+
+### Window Management
+
+| Keybind | Action |
+|---|---|
+| `Super + Shift + Q` | Kill focused window |
+| `Super + H / ← ` | Focus left |
+| `Super + J / ↓ ` | Focus down |
+| `Super + K / ↑ ` | Focus up |
+| `Super + L / → ` | Focus right |
+| `Super + Shift + H/J/K/L` | Move focused window (vim keys) |
+| `Super + Shift + ←/↓/↑/→` | Move focused window (arrow keys) |
+| `Super + W` | Focus most recent urgent window |
+| `Super + Shift + W` | Focus first tab in tabbed/stacked container |
+| `Super + Tab` | Focus parent container |
+
+### Layout
+
+| Keybind | Action |
+|---|---|
+| `Super + O` | Horizontal split |
+| `Super + I` | Vertical split |
+| `Super + S` | Stacking layout |
+| `Super + D` | Tabbed layout |
+| `Super + E` | Toggle split layout |
+| `Super + F` | Fullscreen |
+| `Super + Shift + Space` | Toggle floating |
+| `Super + Space` | Toggle focus between tiling/floating |
+
+### Workspaces
+
+| Keybind | Action |
+|---|---|
+| `Super + 1–0` | Switch to workspace 1–10 |
+| `Super + Shift + 1–0` | Move container to workspace 1–10 |
+| `Super + Ctrl + 1` | Move current workspace to laptop display (`eDP-1`) |
+| `Super + Ctrl + 2` | Move current workspace to external monitor (`HDMI-A-1`) |
+
+### Scratchpad
+
+| Keybind | Action |
+|---|---|
+| `Super + Shift + Minus` | Send focused window to scratchpad |
+| `Super + Minus` | Show / cycle scratchpad windows |
+
+### Resize Mode
+
+Enter resize mode with `Super + R`, then:
+
+| Key | Action |
+|---|---|
+| `H / ← ` | Shrink width 10px |
+| `L / → ` | Grow width 10px |
+| `K / ↑ ` | Shrink height 10px |
+| `J / ↓ ` | Grow height 10px |
+| `Enter / Escape` | Exit resize mode |
+
+### Utilities & Media Keys
+
+| Keybind | Action |
+|---|---|
+| `XF86AudioMute` | Toggle mute (works while locked) |
+| `XF86AudioLowerVolume` | Volume −5% (works while locked) |
+| `XF86AudioRaiseVolume` | Volume +5% (works while locked) |
+| `XF86AudioMicMute` | Toggle mic mute (works while locked) |
+| `XF86MonBrightnessDown` | Brightness −5% (works while locked) |
+| `XF86MonBrightnessUp` | Brightness +5% (works while locked) |
+| `Super + Ctrl + S` | Screenshot — select region (hyprshot) |
+| `Super + Ctrl + Shift + S` | Screenshot — full output (hyprshot) |
+| `Super + F1` | Lock screen (swaylock-fancy) |
+| `Super + Shift + C` | Reload Sway config |
+| `Super + Shift + E` | Exit Sway (with confirmation) |
+
+### Display Cycling
+
+| Keybind | Action |
+|---|---|
+| `Super + Shift + P` | Cycle display profile: Laptop Only → Both Displays → External Only (loops) |
+
+### VS Code Keybindings
+
+| Keybind | Action |
+|---|---|
+| `Shift + Alt + B` | Toggle breadcrumbs |
+
+> **Compatibility note:** Both vim-style (`h` `j` `k` `l`) and arrow keys are mapped for every navigation and resize action, so the setup works seamlessly whether you're a vim user or prefer arrow keys.
+
+---
+
+## 🖥️ Display Setup — Laptop & Monitor
+
+Display output management is handled by [**Kanshi**](https://sr.ht/~emersion/kanshi/), a dynamic output configuration daemon for Wayland. Sway delegates all display decisions to Kanshi via `exec_always kanshictl reload`.
+
+### Hardware
+
+| Output | Identifier | Native Resolution |
+|---|---|---|
+| Laptop screen | `eDP-1` | 1920×1200 |
+| External monitor | `HDMI-A-1` | 1920×1080 |
+
+### Kanshi Display Profiles
+
+Four profiles are defined in `.config/kanshi/config`:
+
+| Profile | Laptop (`eDP-1`) | Monitor (`HDMI-A-1`) | Use Case |
+|---|---|---|---|
+| **Screen Only** | ✅ Enabled — 1920×1200 @ scale 1.2 | — (not connected) | Laptop with no external display plugged in |
+| **Laptop Only** | ✅ Enabled — 1920×1200 @ scale 1.2 | ❌ Disabled | External monitor connected but turned off |
+| **External Only** | ❌ Disabled | ✅ Enabled — 1920×1080 @ scale 1.1 | Laptop lid closed / laptop screen off |
+| **Both Displays** | ✅ Enabled — 1920×1200 @ scale 1.2 (below) | ✅ Enabled — 1920×1080 @ scale 1.1 (above) | Dual-screen: monitor stacked on top of laptop |
+
+In the **Both Displays** profile the monitor sits at position `(0, 0)` and the laptop screen at `(0, 982)`, creating a vertically stacked arrangement with the external monitor on top.
+
+### Display Scripts
+
+Three scripts provide flexible ways to switch between profiles:
+
+#### `scripts/cycle-display`
+Bound to `Super + Shift + P` — cycles through profiles in a loop:
+
+```
+Laptop Only → Both Displays → External Only → Laptop Only → …
+```
+
+State is persisted in `~/.config/sway/display-state`.
+
+#### `scripts/kanshi-laptop-monitor-shuffler`
+An advanced profile manager that rewrites the Kanshi config to set a chosen profile as active:
+
+```bash
+# Auto-detect and apply the currently active profile
+kanshi-laptop-monitor-shuffler --current
+
+# Interactively choose from available profiles
+kanshi-laptop-monitor-shuffler --choose
+```
+
+It always keeps the `"Screen Only"` profile at the top of the config file and reorders the remaining profiles so the selected one comes first.
+
+#### `scripts/move-workspaces`
+Bulk-moves all workspaces from one output to another:
+
+```bash
+# Move all workspaces to the laptop screen
+move-workspaces --laptop
+
+# Move all workspaces to the external monitor
+move-workspaces --monitor
+```
+
+---
+
+## 🚀 Startup Applications
+
+When Sway launches, the following applications are automatically started and assigned to workspaces:
+
+| Workspace | Application |
+|---|---|
+| 1 | Kitty (terminal) |
+| 2 | Spotify + pavucontrol |
+| 3 | Firefox |
+| 4 | VS Code |
+
+---
+
+## 🎨 Theming
+
+The setup uses a **minimal black theme** across the entire environment:
+
+- **Sway borders & tabs:** Pure black (`#000000`) background with white (`#ffffff`) text for focused windows; dark grey (`#272727`) for unfocused tabs.
+- **Window borders:** 1px pixel border, 5px outer gaps.
+- **Status bar:** Top-positioned swaybar on a black background showing memory usage, CPU usage, date, and time.
+- **VS Code:** "Simple Black Theme" with fully black status/title bars and IBM Plex Mono font.
+- **Picom (X11):** No shadows, no transparency, vsync enabled — purely functional.
+
+---
+
+## 🐚 Shell Configuration
+
+### Bash Aliases
+
+| Alias | Expands To |
+|---|---|
+| `ls` | `lsd --group-dirs first --icon=never --color=auto` |
+| `la` | `lsd -a --group-dirs first --icon=never --color=auto` |
+| `ll` | `lsd -lh --group-dirs first --icon=never --color=never` |
+| `lla` | `lsd -lah --group-dirs first --icon=never --color=never` |
+| `rm` | `trash` (safe delete via trash-cli) |
+| `swaycon` | `vim ~/.config/sway/config` |
+| `icat` | `kitten icat` (Kitty image viewer) |
+| `start-sway` | `uwsm start sway` |
+
+### Bash Functions
+
+- **`show-host`** — Toggles showing the hostname in the shell prompt.
+- **`pkghealth`** — Reports system package integrity (percentage of packages with no missing files).
+
+### Prompt
+
+A minimal bracket prompt: `[user dir]$` — hostname is conditionally shown if `~/.show_hostname` exists.
+
+**Zoxide** is integrated as a `cd` replacement for smart directory navigation.
+
+---
+
+## ⚙️ Systemd Services
+
+| Service | Description |
+|---|---|
+| `kanshi.service` | Runs Kanshi as a user service tied to the graphical session. Auto-restarts on failure. |
+| `polkit-gnome.service` | Runs the Polkit GNOME authentication agent for privilege escalation dialogs. |
+
+---
+
+## 🔄 Syncing Configs
+
+The script `.config/sync-from-home-config-files.sh` copies live configuration files from your home directory into this repository:
+
+```bash
+cd ~/Projects/arch-configs/.config
+bash sync-from-home-config-files.sh
+```
+
+This copies configs for: VS Code, Fastfetch, Kanshi, Sway (including config.d fragments and bar scripts), and Wayland flags for Code/Spotify.
+
+---
+
+## 📦 Key Dependencies
+
+- [Sway](https://swaywm.org/) — Wayland compositor (i3-compatible)
+- [Kanshi](https://sr.ht/~emersion/kanshi/) — Dynamic display configuration
+- [Kitty](https://sw.kovidgoyal.net/kitty/) — GPU-accelerated terminal
+- [lsd](https://github.com/lsd-rs/lsd) — Modern `ls` replacement
+- [zoxide](https://github.com/ajeetdsouza/zoxide) — Smart `cd` replacement
+- [trash-cli](https://github.com/andreafrancia/trash-cli) — Safe file deletion
+- [hyprshot](https://github.com/Gustash/Hyprshot) — Screenshot utility
+- [swaylock-fancy](https://github.com/Big-Bag/swaylock-fancy) — Fancy lock screen
+- [brightnessctl](https://github.com/Hummer12007/brightnessctl) — Backlight control
+- [Picom](https://github.com/yshui/picom) — Compositor (X11 fallback)
+- [Fastfetch](https://github.com/fastfetch-cli/fastfetch) — System information tool
+- [GitUI](https://github.com/extrawurst/gitui) — Terminal Git interface
+- [UWSM](https://github.com/Vladimir-csp/uwsm) — Universal Wayland Session Manager
