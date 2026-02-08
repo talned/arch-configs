@@ -95,12 +95,6 @@ Enter resize mode with `Super + R`, then:
 | `Super + Shift + C` | Reload Sway config |
 | `Super + Shift + E` | Exit Sway (with confirmation) |
 
-### Display Cycling
-
-| Keybind | Action |
-|---|---|
-| `Super + Shift + P` | Cycle display profile: Laptop Only → Both Displays → External Only (loops) |
-
 ### VS Code Keybindings
 
 | Keybind | Action |
