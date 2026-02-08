@@ -121,7 +121,6 @@ input type:touchpad {
     bindsym $mod+n exec spotify
     bindsym $mod+Shift+v exec pavucontrol
     bindsym $mod+CTRL+d exec discord --ozone-platform=wayland
-    bindsym $mod+CTRL+o exec okular
     bindsym $mod+Shift+o exec obs
     bindsym $mod+CTRL+p exec /usr/lib/packettracer/packettracer.AppImage
     bindsym $mod+shift+w exec sway-focus-first-tab
@@ -200,6 +199,8 @@ input type:touchpad {
 
     bindsym $mod+CTRL+1 move workspace to output eDP-1
     bindsym $mod+CTRL+2 move workspace to output HDMI-A-1
+    bindsym $mod+F2 exec move-workspaces --laptop
+    bindsym $mod+F3 exec move-workspaces --monitor
 
 # Layout stuff:
     # horizontal and vertical splits
