@@ -38,7 +38,6 @@ The modifier key (`$mod`) is **Super / Logo key** (Mod4). Navigation uses **vim-
 | `Super + N` | Open Spotify |
 | `Super + Shift + V` | Open PulseAudio Volume Control (pavucontrol) |
 | `Super + Ctrl + D` | Open Discord |
-| `Super + Ctrl + O` | Open Okular (PDF viewer) |
 | `Super + Shift + O` | Open OBS Studio |
 | `Super + Ctrl + P` | Open Cisco Packet Tracer |
 | `Super + Shift + R` | Open Themix GUI |
