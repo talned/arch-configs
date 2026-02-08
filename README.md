@@ -40,7 +40,6 @@ The modifier key (`$mod`) is **Super / Logo key** (Mod4). Navigation uses **vim-
 | `Super + Ctrl + D` | Open Discord |
 | `Super + Shift + O` | Open OBS Studio |
 | `Super + Ctrl + P` | Open Cisco Packet Tracer |
-| `Super + Shift + R` | Open Themix GUI |
 
 ### Window Management
 
