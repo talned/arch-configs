@@ -83,7 +83,7 @@ choose_profile() {
     local profile_array=()
     while IFS= read -r profile; do
         profile_array+=("$profile")
-    done < <(awk -F '"' '/^profile / {print $2}' "$CONFIG_FILE")
+    done < <(awk -F '"' '/^profile / && $2 != "Screen Only" {print $2}' "$CONFIG_FILE")
 
     for i in "${!profile_array[@]}"; do
         echo "$((i + 1)). ${profile_array[i]}" >&2
