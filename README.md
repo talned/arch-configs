@@ -131,7 +131,7 @@ In the **Both Displays** profile the monitor sits at position `(0, 0)` and the l
 
 ### Display Scripts
 
-Three scripts provide flexible ways to switch between profiles:
+Two scripts provide flexible ways to switch between profiles:
 
 #### [scripts/cycle-display](https://github.com/talned/arch-configs/blob/main/scripts/cycle-display)
 Bound to `Super + Shift + P` — cycles through profiles in a loop:
@@ -152,6 +152,7 @@ kanshi-laptop-monitor-shuffler --current
 # Interactively choose from available profiles
 kanshi-laptop-monitor-shuffler --choose
 ```
+### Additional Script(s)
 
 It always keeps the `"Screen Only"` profile at the top of the config file and reorders the remaining profiles so the selected one comes first.
 
@@ -165,8 +166,6 @@ move-workspaces --laptop
 # Move all workspaces to the external monitor
 move-workspaces --monitor
 ```
-
-### Additional Script(s)
 
 #### [scripts/sway-focus-first-tab](https://github.com/talned/arch-configs/blob/main/scripts/sway-focus-first-tab)
 During tabbed mode in Sway, if you have multiple windows stacked as tabs (e.g. tabs A, B, C) and you're currently focused on tab C, there's no built-in Sway keybind to jump straight back to the first tab. You'd have to press focus left repeatedly. This script solves that in one keypress.
