@@ -117,7 +117,6 @@ input type:touchpad {
     #bindsym $mod+Shift+Return exec emacsclient -c -a 'emacs'
     bindsym $mod+Shift+Return exec code
     bindsym $mod+b exec $browser
-    bindsym $mod+Shift+r exec themix-gui
     bindsym $mod+n exec spotify
     bindsym $mod+Shift+v exec pavucontrol
     bindsym $mod+CTRL+d exec discord --ozone-platform=wayland
