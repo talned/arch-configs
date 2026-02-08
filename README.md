@@ -168,7 +168,7 @@ move-workspaces --monitor
 
 ### [scripts/sway-focus-first-tab](https://github.com/talned/arch-configs/blob/main/scripts/sway-focus-first-tab)
 During tabbed mode in Sway, if you have multiple windows stacked as tabs (e.g. tabs A, B, C) and you're currently focused on tab C, there's no built-in Sway keybind to jump straight back to the first tab. You'd have to press focus left repeatedly. This script solves that in one keypress.
-
+```
 Tabbed container
 ┌──────────┬──────────┬──────────┐
 │  Tab A   │  Tab B   │  Tab C ◄ │  ← you are here
@@ -179,7 +179,7 @@ After running the script:
 ┌──────────┬──────────┬──────────┐
 │  Tab A ◄ │  Tab B   │  Tab C   │  ← now here
 └──────────┴──────────┴──────────┘
-
+```
 ---
 
 ## 🚀 Startup Applications
