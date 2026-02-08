@@ -20,6 +20,8 @@ alias grep='grep --color=auto'
 alias swaycon='vim ~/.config/sway/config'
 alias rm='trash'
 alias icat="kitten icat"
+alias default-display='kanshi-laptop-monitor-shuffler --choose'
+alias sway='[ -n "$WAYLAND_DISPLAY" ] && echo "Sway is already running." || command sway'
 
 # Custom PS1 Prompt
 PS1='[\u'
