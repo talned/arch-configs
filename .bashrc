@@ -8,6 +8,7 @@ eval "$(zoxide init bash --cmd cd)"
 # Environment Variables
 export EMACS_CONFIG_DIR="$HOME/.config/emacs"
 export LC_TIME=C
+export PATH="/home/tal/.local/bin:$PATH"
 
 # Aliases
 alias start-sway='uwsm start sway'
@@ -46,8 +47,8 @@ show-host() {
 }
 
 pkghealth() {
-    local total=$(pacman -Q | wc -l)
-    local valid=$(pacman -Qk 2>/dev/null | grep "0 missing files" | wc -l)
+    local total=$(sudo pacman -Q | wc -l)
+    local valid=$(sudo pacman -Qk 2>/dev/null | grep "0 missing files" | wc -l)
     local percent=$((valid * 100 / total))
     
     if [ "$valid" -eq "$total" ]; then
