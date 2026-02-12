@@ -24,7 +24,7 @@ swaymsg -t get_workspaces | jq -r ".[] | select(.output==\"$SOURCE\") | .name" |
     swaymsg "workspace $workspace; move workspace to output $DEST"
 done
 
-swaymsg workspace $(swaymsg -t get_workspaces | jq '.[] | select(.focused==true).num')
+#swaymsg workspace $(swaymsg -t get_workspaces | jq '.[] | select(.focused==true).num')
 
 echo "Done!"
 

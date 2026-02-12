@@ -7,25 +7,29 @@ mkdir -p "$(dirname "$CONFIG_FILE")"
 
 # Initialize state if not exists
 if [ ! -f "$CONFIG_FILE" ]; then
-	echo "0" > "$CONFIG_FILE"
+    echo "0" > "$CONFIG_FILE"
 fi
 
 STATE=$(cat "$CONFIG_FILE")
 
 case $STATE in
-	0)
-		# Laptop Only
-		kanshictl switch "Laptop Only"
-		echo "1" > "$CONFIG_FILE"
-		;;
-	1)
-		# Both Displays
-		kanshictl switch "Both Displays"
-		echo "2" > "$CONFIG_FILE"
-		;;
-	2)
-		# External Only
-		kanshictl switch "External Only"
-		echo "0" > "$CONFIG_FILE"
-		;;
+    0)
+        kanshictl switch "Laptop Only"
+        echo "1" > "$CONFIG_FILE"
+        ;;
+    1)
+        kanshictl switch "Both Displays"
+        echo "2" > "$CONFIG_FILE"
+        ;;
+    2)
+        kanshictl switch "External Only"
+        echo "0" > "$CONFIG_FILE"
+        ;;
 esac
+
+# Check if HDMI-A-1 exists in wlr-randr output
+if wlr-randr | grep -q "HDMI-A-1"; then
+    # Run kanshi-laptop-monitor-shuffler if HDMI-A-1 is detected
+    kanshi-laptop-monitor-shuffler --current
+fi
+
