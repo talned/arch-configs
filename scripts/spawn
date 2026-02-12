@@ -5,6 +5,13 @@ focused_workspace=$(swaymsg -t get_workspaces | jq -r \
     '.[] | select(.focused).name')
 
 # Parse arguments
+app_id_override=""
+for arg in "$@"; do
+    if [[ "$arg" == -id=* ]]; then
+        app_id_override="${arg#-id=}"
+    fi
+done
+
 if [[ "$1" == "-s" && -n "$2" ]]; then
     raw_name="$2"
 elif [[ -n "$1" ]]; then
@@ -17,9 +24,13 @@ else
 fi
 
 # Resolve the full app_id from the Sway tree
-app_name=$(swaymsg -t get_tree | jq -r \
-    'recurse(.nodes[]?, .floating_nodes[]?) | select(.app_id? != null) | select(.app_id | test("'"$raw_name"'")) | .app_id' | head -1)
-[[ -z "$app_name" ]] && app_name="$raw_name"
+if [[ -n "$app_id_override" ]]; then
+    app_name="$app_id_override"
+else
+    app_name=$(swaymsg -t get_tree | jq -r \
+        'recurse(.nodes[]?, .floating_nodes[]?) | select(.app_id? != null) | select(.app_id | test("'"$raw_name"'")) | .app_id' | head -1)
+    [[ -z "$app_name" ]] && app_name="$raw_name"
+fi
 
 # Gather all `con_id` values associated with the application's `app_id` into an array
 con_ids=($(swaymsg -t get_tree | jq -r \
