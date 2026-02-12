@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+# Fetch the currently focused workspace
+focused_workspace=$(swaymsg -t get_workspaces | jq -r \
+    '.[] | select(.focused).name')
+
+# Parse arguments
+if [[ "$1" == "-s" && -n "$2" ]]; then
+    raw_name="$2"
+elif [[ -n "$1" ]]; then
+    "$1" &
+    wait
+    sleep 0.6
+    raw_name=$(basename "$1")
+else
+    exit 1
+fi
+
+# Resolve the full app_id from the Sway tree
+app_name=$(swaymsg -t get_tree | jq -r \
+    'recurse(.nodes[]?, .floating_nodes[]?) | select(.app_id? != null) | select(.app_id | test("'"$raw_name"'")) | .app_id' | head -1)
+[[ -z "$app_name" ]] && app_name="$raw_name"
+
+# Gather all `con_id` values associated with the application's `app_id` into an array
+con_ids=($(swaymsg -t get_tree | jq -r \
+    'recurse(.nodes[]?, .floating_nodes[]?) | select(.app_id? == "'"$app_name"'") | .id'))
+
+# Spawn the application and exit if no containers were found
+if [[ ${#con_ids[@]} -eq 0 ]]; then
+    if [[ "$1" == "-s" ]]; then
+        "$raw_name" &
+    fi
+    exit 0
+fi
+
+# Get the container ID with the highest numerical value
+highest_con_id=$(printf "%s\n" "${con_ids[@]}" | sort -g | tail -1)
+
+# Move the container with the highest ID to the focused workspace
+swaymsg "[con_id=${highest_con_id}]" move to workspace "$focused_workspace"
+

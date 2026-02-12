@@ -7,6 +7,6 @@ cp ~/.config/fastfetch/config.jsonc fastfetch/
 cp ~/.config/kanshi/config kanshi/
 cp ~/.config/sway/config sway/
 cp ~/.config/sway/config.d/* sway/config.d/
-cp ~/.config/sway/{cpu.sh,mem.sh,nothing.jpg} sway/
+cp ~/.config/sway/{display-cpu-script,display-mem-script,nothing.jpg} sway/
 echo "✅ Copied all configs!"
 
