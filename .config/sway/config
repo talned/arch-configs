@@ -40,7 +40,7 @@ set $black          #000000
 set $white          #ffffff
 
 # Color is for Unfocused & Inactive window
-set $near_black     #010101
+set $near_black     #000001
 
 # Color for Urgent Windows
 set $red            #900000
@@ -109,15 +109,20 @@ input type:touchpad {
 # Basics:
     # Applications
     bindsym $mod+Return exec $term
+    bindsym $mod+CTRL+g exec spawn -s pioneer 
     #bindsym $mod+Shift+Return exec emacsclient -c -a 'emacs'
     bindsym $mod+Shift+Return exec spawn code
     bindsym $mod+b exec spawn firefox
+    bindsym $mod+Shift+b exec spawn google-chrome-stable
     bindsym $mod+n exec spawn -s spotify
     bindsym $mod+Shift+v exec spawn -s pavucontrol
-    bindsym $mod+CTRL+d exec discord --ozone-platform=wayland
+    bindsym $mod+CTRL+d exec spawn -s discord --ozone-platform=wayland
+    bindsym $mod+CTRL+z exec spawn -s zoom --ozone-platform=wayland
+    bindsym $mod+SHIFT+CTRL+d exec spawn -s element-desktop -id=Element
     bindsym $mod+Shift+o exec obs
     bindsym $mod+CTRL+p exec /usr/lib/packettracer/packettracer.AppImage
     bindsym $mod+shift+w exec sway-focus-first-tab
+    bindsym $mod+CTRL+3 exec spawn -s noisetorch
     #bindsym $mod+z exec woomer --all-outputs --spotlight-radius 1920
 
     # Scripts
@@ -166,6 +171,10 @@ input type:touchpad {
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
+
+    # Tab Scrolling
+    bindsym ALT+TAB focus right
+    bindsym ALT+Shift+TAB focus left
 
 # Workspaces:
     # Switch to workspace

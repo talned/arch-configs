@@ -3,12 +3,18 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Set up Guix environment
+GUIX_PROFILE="/home/tal/.guix-profile"
+. "$GUIX_PROFILE/etc/profile"
+unset GUIX_PROFILE
+
 eval "$(zoxide init bash --cmd cd)"
 
 # Environment Variables
 export EMACS_CONFIG_DIR="$HOME/.config/emacs"
 export LC_TIME=C
-export PATH="/home/tal/.local/bin:$PATH"
+export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
+export PATH="/home/tal/.local/bin:$HOME/.config/guix/current/bin:$PATH"
 
 # Aliases
 alias start-sway='uwsm start sway'
@@ -22,6 +28,8 @@ alias swaycon='vim ~/.config/sway/config'
 alias rm='trash'
 alias icat="kitten icat"
 alias default-display='kanshi-laptop-monitor-shuffler --choose'
+alias laus="systemctl --user list-units --state=running --type=service --no-legend | awk '{print \" | \" \$1}'"
+alias lass="systemctl list-units --state=running --type=service --no-legend | awk '{print \" | \" \$1}'"
 alias sway='[ -n "$WAYLAND_DISPLAY" ] && echo "Sway is already running." || command sway'
 
 # Custom PS1 Prompt

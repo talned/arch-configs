@@ -49,4 +49,5 @@ highest_con_id=$(printf "%s\n" "${con_ids[@]}" | sort -g | tail -1)
 
 # Move the container with the highest ID to the focused workspace
 swaymsg "[con_id=${highest_con_id}]" move to workspace "$focused_workspace"
+swaymsg "[con_id=${highest_con_id}]" focus
 
