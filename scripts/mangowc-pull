@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -eu
+
+# Ensure ~/Projects exists, then cd into it
+PROJECTS_DIR="$HOME/Projects"
+mkdir -p "$PROJECTS_DIR"
+cd "$PROJECTS_DIR"
+
+# Fetch latest tag name from GitHub API
+LATEST=$(curl -s https://api.github.com/repos/DreamMaoMao/mangowc/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+
+if [ -z "$LATEST" ]; then
+  echo "Failed to fetch latest tag!"
+  exit 1
+fi
+
+# If the latest version directory exists, skip downloading and extracting
+if [ -d "mangowc-$LATEST" ]; then
+  echo "Latest release ($LATEST) is already present in $PROJECTS_DIR/mangowc-$LATEST"
+  exit 0
+fi
+
+# Download the release tarball (named accordingly)
+curl -L -o mangowc.tar.gz "https://github.com/DreamMaoMao/mangowc/archive/refs/tags/$LATEST.tar.gz"
+
+# Remove any existing extracted directory
+rm -rf "mangowc-$LATEST"
+
+# Extract downloaded tarball
+tar -xzf mangowc.tar.gz
+
+# Remove the tarball
+rm mangowc.tar.gz
+
+echo "Latest release ($LATEST) extracted to $PROJECTS_DIR/mangowc-$LATEST"

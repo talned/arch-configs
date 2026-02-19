@@ -1,0 +1,9 @@
+Dependencies:
+glibc wayland wayland-protocols libinput libdrm libxkbcommon pixman meson ninja libdisplay-info libliftoff hwdata seatd pcre2 xorg-xwayland libxcb wlroots0.19 scenefx0.4
+
+MangoWC Source Code:
+scripts/mangowc-pull
+
+Build Commands:
+meson build -Dprefix=/usr/local
+sudo ninja -C build install
