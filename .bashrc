@@ -20,13 +20,13 @@ export LC_TIME=C
 #alias start-sway='uwsm start sway'
 #alias sway='[ -n "$WAYLAND_DISPLAY" ] && echo "Sway is already running." || command sway'
 #alias default-display='kanshi-laptop-monitor-shuffler --choose'
+alias swaycon='vim ~/.config/sway/config'
 alias sudo='sudo '
 alias ls='lsd --group-dirs first --icon=never --color=auto'
 alias la='lsd -a --group-dirs first --icon=never --color=auto'
 alias ll='lsd -lh --group-dirs first --icon=never --color=never'
 alias lla='lsd -lah --group-dirs first --icon=never --color=never'
 alias grep='grep --color=auto'
-alias mancon='vim ~/.config/mango/config.conf'
 alias rm='trash'
 alias icat="kitten icat"
 alias laus="systemctl --user list-units --state=running --type=service"
@@ -70,4 +70,20 @@ pkghealth() {
     fi
 }
 
+zi() {
+    cd "$(zoxide query "$1")" && vim "$(fzf)"
+}
+
+vim() {
+    if [ "$#" -eq 0 ]; then
+        command vim
+    elif [ -f "$1" ]; then
+        command vim "$@"
+    elif [ -d "$1" ]; then
+        cd "$1" && file=$(fzf) && command vim "$file"
+        cd - > /dev/null
+    else
+        command vim "$@"
+    fi
+}
 

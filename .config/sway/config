@@ -31,6 +31,10 @@ exec pavucontrol
 exec firefox
 exec code
 
+# Startup Services
+exec systemctl --user start kanshi
+exec systemctl --user start polkit-gnome
+
 #========================#
 # Appearance and Theming #
 #========================#
@@ -62,11 +66,12 @@ client.focused_tab_title $white $black $white $grey_bg $white
 
 # Window Customisation
 default_border pixel 1
+for_window [floating] border pixel 1
 #hide_edge_borders smart
 
 # Increase titlebar font size
 titlebar_border_thickness 1
-font pango 12
+font pango 14
 titlebar_padding 10 3
 
 # Gaps
@@ -109,24 +114,26 @@ input type:touchpad {
 # Basics:
     # Applications
     bindsym $mod+Return exec $term
-    bindsym $mod+CTRL+g exec spawn -s pioneer 
-    #bindsym $mod+Shift+Return exec emacsclient -c -a 'emacs'
-    bindsym $mod+Shift+Return exec spawn code
     bindsym $mod+b exec spawn firefox
-    bindsym $mod+Shift+b exec spawn google-chrome-stable
     bindsym $mod+n exec spawn -s spotify
     bindsym $mod+Shift+v exec spawn -s pavucontrol
     bindsym $mod+CTRL+d exec spawn -s discord --ozone-platform=wayland
-    bindsym $mod+CTRL+z exec spawn -s zoom --ozone-platform=wayland
-    bindsym $mod+SHIFT+CTRL+d exec spawn -s element-desktop -id=Element
-    bindsym $mod+Shift+o exec obs
-    bindsym $mod+CTRL+p exec /usr/lib/packettracer/packettracer.AppImage
-    bindsym $mod+shift+w exec sway-focus-first-tab
-    bindsym $mod+CTRL+3 exec spawn -s noisetorch
+    # Ricing
+    bindsym $mod+Shift+r exec spawn -s dconf-editor
+    #bindsym $mod+CTRL+z exec spawn -s zoom --ozone-platform=wayland
+    #bindsym $mod+Shift+b exec spawn google-chrome-stable
+    #bindsym $mod+SHIFT+CTRL+d exec spawn -s element-desktop -id=Element
+    #bindsym $mod+Shift+o exec obs
+    #bindsym $mod+CTRL+p exec /usr/lib/packettracer/packettracer.AppImage
+    #bindsym $mod+CTRL+3 exec spawn -s noisetorch
     #bindsym $mod+z exec woomer --all-outputs --spotlight-radius 1920
+    #bindsym $mod+CTRL+g exec spawn -s pioneer 
+    #bindsym $mod+Shift+Return exec emacsclient -c -a 'emacs'
+    #bindsym $mod+Shift+Return exec spawn code
 
     # Scripts
     bindsym $mod+Shift+p exec cycle-display
+    bindsym $mod+shift+w exec sway-focus-first-tab
 
     # Kill focused window
     bindsym $mod+Shift+q kill

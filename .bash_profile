@@ -6,10 +6,10 @@
 
 # Auto-launch Sway on TTY1 login
 if [ "$(tty)" = "/dev/tty1" ]; then
-    read -p "Start MangoWC? [y]es or [n]o: " -n 1 -r
+    read -p "Start SwayWM? [y]es or [n]o: " -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-        mangowc ---start
+        uwsm start sway
     fi
 fi
 
