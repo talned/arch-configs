@@ -1,0 +1,48 @@
+#waybar {
+	background: #000000;
+	color: #ffffff;
+	font-family: monospace;
+	font-size: 15.2pt;
+}
+
+#workspaces {
+	margin: 5pt 5pt 0pt 5pt;
+}
+
+#workspaces button {
+	color: #909090;
+	background: transparent;
+	box-shadow: none;
+	border: 1px solid #272727;
+	border-radius: 1px;
+	margin-right: 5pt;
+}
+
+#workspaces button.active {
+	color: #ffffff;
+	border: 1px solid #ffffff;
+	border-radius: 1px;
+}
+
+#tray {
+	margin: 5pt 5pt 0pt 5pt;
+	border: 1px solid #ffffff;
+	padding: 0pt 20pt;
+	background: transparent;
+}
+
+#window {
+	background: transparent;
+	margin: 5pt 5pt 0pt 5pt;
+	font-size: 18pt;
+	border: 1px solid #ffffff;
+	padding: 0pt 15pt;
+}
+
+#clock {
+	margin: 5pt 5pt 0pt 5pt;
+	border: 1px solid #ffffff;
+	background: transparent;
+	font-size: 18pt;
+	padding: 0pt 20pt;
+}

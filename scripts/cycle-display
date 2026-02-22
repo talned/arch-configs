@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Move to workspace 1
+mmsg -s -t 1
+
 # Display cycling script for Sway with Kanshi
 
 CONFIG_FILE="$HOME/.config/sway/display-state"
@@ -19,6 +22,7 @@ case $STATE in
         ;;
     1)
         kanshictl switch "Both Displays"
+	wlr-randr --output HDMI-A-1 --pos 0,0
         echo "2" > "$CONFIG_FILE"
         ;;
     2)

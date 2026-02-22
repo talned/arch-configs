@@ -1,8 +1,8 @@
 [Unit]
 Description=Kanshi Wayland output manager
 Documentation=man:kanshi(1) man:kanshi(5)
-PartOf=graphical-session.target
-After=graphical-session.target
+#PartOf=graphical-session.target
+#After=graphical-session.target
 
 [Service]
 Type=exec
@@ -11,5 +11,5 @@ ExecReload=kill -SIGHUP $MAINPID
 Restart=on-failure
 Slice=background-graphical.slice
 
-[Install]
-WantedBy=graphical-session.target
+#[Install]
+#WantedBy=graphical-session.target

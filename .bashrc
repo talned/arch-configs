@@ -4,33 +4,33 @@
 [[ $- != *i* ]] && return
 
 # Set up Guix environment
-GUIX_PROFILE="/home/tal/.guix-profile"
-. "$GUIX_PROFILE/etc/profile"
-unset GUIX_PROFILE
+#GUIX_PROFILE="/home/tal/.guix-profile"
+#. "$GUIX_PROFILE/etc/profile"
+#unset GUIX_PROFILE
 
 eval "$(zoxide init bash --cmd cd)"
 
 # Environment Variables
 export EMACS_CONFIG_DIR="$HOME/.config/emacs"
 export LC_TIME=C
-export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
-export PATH="/home/tal/.local/bin:$HOME/.config/guix/current/bin:$PATH"
+#export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
+#export PATH="/home/tal/.local/bin:$HOME/.config/guix/current/bin:$PATH"
 
 # Aliases
-alias start-sway='uwsm start sway'
+#alias start-sway='uwsm start sway'
+#alias sway='[ -n "$WAYLAND_DISPLAY" ] && echo "Sway is already running." || command sway'
+#alias default-display='kanshi-laptop-monitor-shuffler --choose'
 alias sudo='sudo '
 alias ls='lsd --group-dirs first --icon=never --color=auto'
 alias la='lsd -a --group-dirs first --icon=never --color=auto'
 alias ll='lsd -lh --group-dirs first --icon=never --color=never'
 alias lla='lsd -lah --group-dirs first --icon=never --color=never'
 alias grep='grep --color=auto'
-alias swaycon='vim ~/.config/sway/config'
+alias mancon='vim ~/.config/mango/config.conf'
 alias rm='trash'
 alias icat="kitten icat"
-alias default-display='kanshi-laptop-monitor-shuffler --choose'
-alias laus="systemctl --user list-units --state=running --type=service --no-legend | awk '{print \" | \" \$1}'"
-alias lass="systemctl list-units --state=running --type=service --no-legend | awk '{print \" | \" \$1}'"
-alias sway='[ -n "$WAYLAND_DISPLAY" ] && echo "Sway is already running." || command sway'
+alias laus="systemctl --user list-units --state=running --type=service"
+alias lass="systemctl list-units --state=running --type=service"
 
 # Custom PS1 Prompt
 PS1='[\u'

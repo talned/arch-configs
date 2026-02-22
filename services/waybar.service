@@ -1,0 +1,9 @@
+[Unit]
+Description=Waybar (Wayland Status Bar)
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/waybar
+Restart=on-failure
+
+

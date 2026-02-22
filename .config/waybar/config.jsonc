@@ -1,0 +1,29 @@
+{
+  "modules-left": [
+    "ext/workspaces",
+  ],
+  "modules-right": [
+    "dwl/window",
+    "clock",
+    "tray",
+  ],
+  "ext/workspaces": {
+    "format": "{icon}",
+    "ignore-hidden": true,
+    "on-click": "activate",
+    "on-click-right": "deactivate",
+    "sort-by-id": true
+  },
+  "tray": {
+    "interval": 1,
+    "icon-size": 28,
+    "spacing": 20,
+  },
+  "dwl/window": {
+    "format": "{layout}",
+  },
+  "clock": {
+    "format": "{:%d/%b/%Y %a │ %I:%M:%S %p}",
+    "interval": 1
+  },
+}

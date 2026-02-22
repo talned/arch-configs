@@ -1,0 +1,8 @@
+[Unit]
+Description=NetworkManager Applet
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/nm-applet
+Restart=on-failure
+

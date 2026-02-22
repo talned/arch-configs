@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# mangowc v0.8
+
+set -e
+
+case "$1" in
+  ---start)
+    exec mango
+    ;;
+  ---stop)
+    exec mmsg -q
+    ;;
+  ---restart)
+    "$0" ---stop & wait
+    "$0" ---start
+    ;;
+  *)
+    echo "Usage: $0 [---start|---stop|---restart]"
+    exit 1
+    ;;
+esac
+
