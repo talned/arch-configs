@@ -8,7 +8,6 @@
 	Material Icon Theme
 	Material Product Icons
 	Simple Black Theme
-	Vim
 	vscode-gitui
 	*/
 	"workbench.startupEditor": "none",
@@ -31,7 +30,7 @@
 	"editor.tabSize": 8,
 	"editor.insertSpaces": false,
 	"editor.renderLineHighlight": "all",
-	"editor.fontFamily": "IBM Plex Mono",
+	"editor.fontFamily": "MesloLGL Nerd Font Mono",
 	"editor.fontSize": 16,
 	"editor.lineHeight": 2.5,
 	"editor.letterSpacing": 0.5,
@@ -43,7 +42,7 @@
 	"editor.minimap.enabled": false,
 	"window.commandCenter": false,
 	"chat.agent.enabled": false,
-	"editor.smoothScrolling": true,
+	"editor.smoothScrolling": false,
 	"editor.lightbulb.enabled": "off",
 	"terminal.integrated.cursorBlinking": false,
 	"terminal.integrated.cursorStyle": "line",
@@ -51,7 +50,6 @@
 	"terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
 	"terminal.integrated.fontSize": 20,
 	"terminal.integrated.customGlyphs": true,
-	"breadcrumbs.enabled": false,
 	"security.workspace.trust.untrustedFiles": "open",
 	"git.openRepositoryInParentFolders": "never",
 	"editor.detectIndentation": false,
@@ -88,5 +86,12 @@
 	"chat.fontFamily": "Roboto",
 	"chat.editor.fontSize": 16,
 	"chat.editor.fontFamily": "Roboto",
-	"chat.editor.lineHeight": 2.5
+	"chat.editor.lineHeight": 2.5,
+	"editor.scrollbar.horizontal": "visible",
+	"editor.scrollbar.vertical": "visible",
+	"editor.scrollbar.horizontalScrollbarSize": 10,
+	"editor.scrollbar.verticalScrollbarSize": 10,
+	"breadcrumbs.enabled": false,
+	"window.titleSeparator": " |  ",
+	"window.title": "${dirty}${activeEditorLong}${separator}${rootName}",
 }

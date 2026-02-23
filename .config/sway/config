@@ -71,7 +71,7 @@ for_window [floating] border pixel 1
 
 # Increase titlebar font size
 titlebar_border_thickness 1
-font pango 14
+font pango 12
 titlebar_padding 10 3
 
 # Gaps
@@ -121,15 +121,15 @@ input type:touchpad {
     # Ricing
     bindsym $mod+Shift+r exec spawn -s dconf-editor
     #bindsym $mod+CTRL+z exec spawn -s zoom --ozone-platform=wayland
-    #bindsym $mod+Shift+b exec spawn google-chrome-stable
+    bindsym $mod+Shift+b exec spawn google-chrome-stable
     #bindsym $mod+SHIFT+CTRL+d exec spawn -s element-desktop -id=Element
     #bindsym $mod+Shift+o exec obs
     #bindsym $mod+CTRL+p exec /usr/lib/packettracer/packettracer.AppImage
     #bindsym $mod+CTRL+3 exec spawn -s noisetorch
     #bindsym $mod+z exec woomer --all-outputs --spotlight-radius 1920
-    #bindsym $mod+CTRL+g exec spawn -s pioneer 
+    bindsym $mod+CTRL+g exec spawn -s Sober 
     #bindsym $mod+Shift+Return exec emacsclient -c -a 'emacs'
-    #bindsym $mod+Shift+Return exec spawn code
+    bindsym $mod+Shift+Return exec spawn code
 
     # Scripts
     bindsym $mod+Shift+p exec cycle-display
