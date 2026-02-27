@@ -19,17 +19,18 @@ set $browser firefox
 
 default_orientation horizontal
 
-assign [app_id="spotify"] workspace 2
-assign [app_id="org.pulseaudio.pavucontrol"] workspace 2
-assign [app_id="firefox"] workspace 3
-assign [app_id="code"] workspace 4
-
 # Startup Applications
 exec kitty
 exec spotify
 exec pavucontrol
 exec firefox
 exec code
+
+# Position Apps to Workspaces
+exec swaywait spotify 'move workspace 2'
+exec swaywait org.pulseaudio.pavucontrol 'move workspace 2'
+exec swaywait firefox 'move workspace 3'
+exec swaywait code 'move workspace 4'
 
 # Startup Services
 exec systemctl --user start kanshi
@@ -67,11 +68,10 @@ client.focused_tab_title $white $black $white $grey_bg $white
 # Window Customisation
 default_border pixel 1
 for_window [floating] border pixel 1
-#hide_edge_borders smart
 
 # Increase titlebar font size
 titlebar_border_thickness 1
-font pango 12
+font pango 11
 titlebar_padding 10 3
 
 # Gaps
@@ -84,20 +84,8 @@ gaps outer 5
 # Output configuration
 output * bg $XDG_CONFIG_HOME/sway/nothing.jpg fill
 
-# Laptop Screen
-#output eDP-1 disable
-#output eDP-1 resolution 1920x1200 position 0 0
-#output eDP-1 scale 1.35
-
-# Monitor Screen
-#output HDMI-A-1 enable
-#output HDMI-A-1 resolution 1920x1080 position 0 0
-#output HDMI-A-1 scale 1.2
-
 # Let kanshi to handle the display
 exec_always kanshictl reload
-
-#include outputs
 
 # Settings
 # Focus follows mouse when switching with keyboard
@@ -121,7 +109,7 @@ input type:touchpad {
     # Ricing
     bindsym $mod+Shift+r exec spawn -s dconf-editor
     #bindsym $mod+CTRL+z exec spawn -s zoom --ozone-platform=wayland
-    bindsym $mod+Shift+b exec spawn google-chrome-stable
+    bindsym $mod+Shift+b exec spawn helium-browser
     #bindsym $mod+SHIFT+CTRL+d exec spawn -s element-desktop -id=Element
     #bindsym $mod+Shift+o exec obs
     #bindsym $mod+CTRL+p exec /usr/lib/packettracer/packettracer.AppImage
@@ -129,7 +117,7 @@ input type:touchpad {
     #bindsym $mod+z exec woomer --all-outputs --spotlight-radius 1920
     bindsym $mod+CTRL+g exec spawn -s Sober 
     #bindsym $mod+Shift+Return exec emacsclient -c -a 'emacs'
-    bindsym $mod+Shift+Return exec spawn code
+    bindsym $mod+Shift+Return exec spawn -s code
 
     # Scripts
     bindsym $mod+Shift+p exec cycle-display
@@ -180,8 +168,8 @@ input type:touchpad {
     bindsym $mod+Shift+Right move right
 
     # Tab Scrolling
-    bindsym ALT+TAB focus right
-    bindsym ALT+Shift+TAB focus left
+    bindsym $mod+TAB focus right
+    bindsym $mod+Shift+TAB focus left
 
 # Workspaces:
     # Switch to workspace
@@ -232,7 +220,7 @@ input type:touchpad {
     bindsym $mod+space focus mode_toggle
 
     # Move focus to the parent container
-    bindsym $mod+tab focus parent
+    bindsym $mod+a focus parent
 
 # Scratchpad:
     # Sway has a "scratchpad", which is a bag of holding for windows.
@@ -287,7 +275,7 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while echo "'|' $(~/.config/sway/display-mem-script) '|' CPU: $(~/.config/sway/display-cpu-script) $(LC_TIME=C date +'| %d/%m/%Y %A | %I:%M:%S %p |') "; do sleep 0; done
+    status_command while echo "$(~/.config/sway/display-uptime-script) $(LC_TIME=C date +'| %d/%m/%Y %A | %I:%M %p |') "; do sleep 1m; done
 
     height 30
 

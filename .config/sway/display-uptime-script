@@ -1,0 +1,5 @@
+#!/bin/bash
+# Prints uptime as: Uptime: x hour(s), x minute(s)
+
+uptime=$(awk '{print int($1/3600) " hour(s), " int(($1%3600)/60) " minute(s)"}' /proc/uptime)
+echo "$uptime"
