@@ -11,13 +11,13 @@
 eval "$(zoxide init bash --cmd cd)"
 
 # Environment Variables
-export EMACS_CONFIG_DIR="$HOME/.config/emacs"
 export LC_TIME=C
 export EDITOR=vim
-export JAVA_HOME="/usr/lib/jvm/java-25-openjdk"
-export PATH="$JAVA_HOME/bin:$PATH"
+#export JAVA_HOME="/usr/lib/jvm/java-25-openjdk"
+#export PATH="$JAVA_HOME/bin:$PATH"
 #export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
 #export PATH="/home/tal/.local/bin:$HOME/.config/guix/current/bin:$PATH"
+#export EMACS_CONFIG_DIR="$HOME/.config/emacs"
 
 # Aliases
 #alias start-sway='uwsm start sway'
