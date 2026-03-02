@@ -1,0 +1,9 @@
+Install the xlibre repo
+
+Install the necessary xlibre packages
+
+Installing i3-wm, i3blocks & i3status
+
+Configure i3
+
+
