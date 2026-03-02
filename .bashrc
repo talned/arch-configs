@@ -34,13 +34,14 @@ alias rm='trash'
 alias icat="kitten icat"
 alias laus="systemctl --user list-units --state=running --type=service"
 alias lass="systemctl list-units --state=running --type=service"
+alias cat="bat -p"
 
 # Custom PS1 Prompt
 PS1='[\u'
 if [[ -f "$HOME/.show_hostname" ]]; then
   PS1+='@\h'
 fi
-PS1+=' \W]$ '
+PS1+=' in \W]$ '
 
 # Functions
 show-host() {
@@ -74,17 +75,34 @@ pkghealth() {
 }
 
 zi() {
-    cd "$(zoxide query "$1")" && vim "$(fzf)"
+    local temp=0
+    # Check for -t flag
+    if [[ "$1" == "-t" ]]; then
+        temp=1
+        shift
+    fi
+    local oldpwd="$PWD"
+    cd "$(zoxide query "$1")" && fzfedit
+    # Only return to previous dir if temp flag was used
+    if [[ $temp -eq 1 ]]; then
+        cd "$oldpwd"
+    fi
+}
+
+fzfedit() {
+    while file=$(fzf); do
+        [ -z "$file" ] && break
+        command vim "$file"
+    done
 }
 
 vim() {
     if [ "$#" -eq 0 ]; then
-        command vim
+        fzfedit
     elif [ -f "$1" ]; then
         command vim "$@"
     elif [ -d "$1" ]; then
-        cd "$1" && file=$(fzf) && command vim "$file"
-        cd - > /dev/null
+        cd "$1" && fzfedit && cd - > /dev/null
     else
         command vim "$@"
     fi

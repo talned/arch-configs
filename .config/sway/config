@@ -71,7 +71,7 @@ for_window [floating] border pixel 1
 
 # Increase titlebar font size
 titlebar_border_thickness 1
-font pango 11
+font pango 12
 titlebar_padding 10 3
 
 # Gaps
@@ -102,22 +102,23 @@ input type:touchpad {
 # Basics:
     # Applications
     bindsym $mod+Return exec $term
-    bindsym $mod+b exec spawn firefox
-    bindsym $mod+n exec spawn -s spotify
-    bindsym $mod+Shift+v exec spawn -s pavucontrol
-    bindsym $mod+CTRL+d exec spawn -s discord --ozone-platform=wayland
+    bindsym $mod+b exec firefox
+    bindsym $mod+n exec spawn spotify
+    bindsym $mod+Shift+v exec spawn pavucontrol
+    bindsym $mod+CTRL+d exec spawn discord --ozone-platform=wayland
     # Ricing
-    bindsym $mod+Shift+r exec spawn -s dconf-editor
+    bindsym $mod+Shift+r exec spawn dconf-editor
     #bindsym $mod+CTRL+z exec spawn -s zoom --ozone-platform=wayland
-    bindsym $mod+Shift+b exec spawn helium-browser
+    bindsym $mod+Shift+b exec google-chrome-stable
     #bindsym $mod+SHIFT+CTRL+d exec spawn -s element-desktop -id=Element
     #bindsym $mod+Shift+o exec obs
     #bindsym $mod+CTRL+p exec /usr/lib/packettracer/packettracer.AppImage
     #bindsym $mod+CTRL+3 exec spawn -s noisetorch
     #bindsym $mod+z exec woomer --all-outputs --spotlight-radius 1920
-    bindsym $mod+CTRL+g exec spawn -s Sober 
+    bindsym $mod+CTRL+g exec spawn prismlauncher
+    bindsym $mod+CTRL+h exec spawn Sober
     #bindsym $mod+Shift+Return exec emacsclient -c -a 'emacs'
-    bindsym $mod+Shift+Return exec spawn -s code
+    bindsym $mod+Shift+Return exec spawn code
 
     # Scripts
     bindsym $mod+Shift+p exec cycle-display

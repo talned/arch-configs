@@ -1,53 +1,20 @@
 #!/usr/bin/env bash
 
-# Fetch the currently focused workspace
+match_val="$1"
 focused_workspace=$(swaymsg -t get_workspaces | jq -r \
-    '.[] | select(.focused).name')
+	'.[] | select(.focused).name')
+client_id=$(swaymsg -t get_tree | jq -r '
+  	.. | 
+	if (.class? // "" | ascii_downcase | test("'"${match_val,,}"'")) then "[class=" + .class + "]"
+	elif (.instance? // "" | ascii_downcase | test("'"${match_val,,}"'")) then "[instance=" + .instance + "]"
+	elif (.app_id? // "" | ascii_downcase | test("'"${match_val,,}"'")) then "[app_id=" + .app_id + "]"
+	else empty end')
 
-# Parse arguments
-app_id_override=""
-for arg in "$@"; do
-    if [[ "$arg" == -id=* ]]; then
-        app_id_override="${arg#-id=}"
-    fi
-done
-
-if [[ "$1" == "-s" && -n "$2" ]]; then
-    raw_name="$2"
-elif [[ -n "$1" ]]; then
-    "$1" &
-    wait
-    sleep 0.6
-    raw_name=$(basename "$1")
-else
-    exit 1
+if [[ -z "$client_id" ]]; then
+	# If not running, spawn the app in background
+	"$match_val" &
+	exit 0
 fi
 
-# Resolve the full app_id from the Sway tree
-if [[ -n "$app_id_override" ]]; then
-    app_name="$app_id_override"
-else
-    app_name=$(swaymsg -t get_tree | jq -r \
-        'recurse(.nodes[]?, .floating_nodes[]?) | select(.app_id? != null) | select(.app_id | test("'"$raw_name"'")) | .app_id' | head -1)
-    [[ -z "$app_name" ]] && app_name="$raw_name"
-fi
-
-# Gather all `con_id` values associated with the application's `app_id` into an array
-con_ids=($(swaymsg -t get_tree | jq -r \
-    'recurse(.nodes[]?, .floating_nodes[]?) | select(.app_id? == "'"$app_name"'") | .id'))
-
-# Spawn the application and exit if no containers were found
-if [[ ${#con_ids[@]} -eq 0 ]]; then
-    if [[ "$1" == "-s" ]]; then
-        "$raw_name" &
-    fi
-    exit 0
-fi
-
-# Get the container ID with the highest numerical value
-highest_con_id=$(printf "%s\n" "${con_ids[@]}" | sort -g | tail -1)
-
-# Move the container with the highest ID to the focused workspace
-swaymsg "[con_id=${highest_con_id}]" move to workspace "$focused_workspace"
-swaymsg "[con_id=${highest_con_id}]" focus
-
+swaymsg $client_id move to workspace $focused_workspace
+swaymsg $client_id focus
