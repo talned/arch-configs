@@ -41,7 +41,7 @@ PS1='[\u'
 if [[ -f "$HOME/.show_hostname" ]]; then
   PS1+='@\h'
 fi
-PS1+=' in \W]$ '
+PS1+=' \W]$ '
 
 # Functions
 show-host() {
