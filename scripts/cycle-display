@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Move to workspace 1
-mmsg -s -t 1
+# Be sure to be on workspace 1
+swaymsg workspace 1
 
 # Display cycling script for Sway with Kanshi
 
