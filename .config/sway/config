@@ -117,6 +117,7 @@ input type:touchpad {
     #bindsym $mod+z exec woomer --all-outputs --spotlight-radius 1920
     bindsym $mod+CTRL+g exec spawn prismlauncher
     bindsym $mod+CTRL+h exec spawn Sober
+    bindsym $mod+CTRL+o exec spawn overlayed
     #bindsym $mod+Shift+Return exec emacsclient -c -a 'emacs'
     bindsym $mod+Shift+Return exec spawn code
 

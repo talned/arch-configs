@@ -12,7 +12,7 @@ client_id=$(swaymsg -t get_tree | jq -r '
 
 if [[ -z "$client_id" ]]; then
 	# If not running, spawn the app in background
-	"$match_val" &
+	"$match_val" $2 &
 	exit 0
 fi
 
