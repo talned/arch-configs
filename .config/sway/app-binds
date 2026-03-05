@@ -1,0 +1,10 @@
+# Applications
+bindsym $mod+Return exec $term
+bindsym $mod+b exec firefox
+bindsym $mod+n exec spawn spotify
+bindsym $mod+Shift+v exec spawn pavucontrol
+bindsym $mod+CTRL+d exec spawn discord --ozone-platform=wayland
+bindsym $mod+Shift+Return exec spawn code
+# Ricing
+bindsym $mod+Shift+r exec spawn dconf-editor
+
