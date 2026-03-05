@@ -71,7 +71,7 @@ for_window [floating] border pixel 1
 
 # Increase titlebar font size
 titlebar_border_thickness 1
-font pango 12
+font pango:Adwaita Sans 11
 titlebar_padding 10 3
 
 # Gaps
@@ -98,6 +98,8 @@ input type:touchpad {
 	dwt disabled
 }
 
+focus_on_window_activation smart
+
 # Key bindings
 # Basics:
     # Applications
@@ -109,7 +111,7 @@ input type:touchpad {
     # Ricing
     bindsym $mod+Shift+r exec spawn dconf-editor
     #bindsym $mod+CTRL+z exec spawn -s zoom --ozone-platform=wayland
-    bindsym $mod+Shift+b exec google-chrome-stable
+    #bindsym $mod+Shift+b exec google-chrome-stable
     #bindsym $mod+SHIFT+CTRL+d exec spawn -s element-desktop -id=Element
     #bindsym $mod+Shift+o exec obs
     #bindsym $mod+CTRL+p exec /usr/lib/packettracer/packettracer.AppImage
@@ -117,7 +119,7 @@ input type:touchpad {
     #bindsym $mod+z exec woomer --all-outputs --spotlight-radius 1920
     bindsym $mod+CTRL+g exec spawn prismlauncher
     bindsym $mod+CTRL+h exec spawn Sober
-    bindsym $mod+CTRL+o exec spawn overlayed
+    #bindsym $mod+CTRL+o exec spawn overlayed
     #bindsym $mod+Shift+Return exec emacsclient -c -a 'emacs'
     bindsym $mod+Shift+Return exec spawn code
 
