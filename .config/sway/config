@@ -103,13 +103,13 @@ focus_on_window_activation focus
 # Key bindings
 # Basics:
     # Applications
-    bindsym $mod+Return exec $term
-    bindsym $mod+b exec firefox
-    bindsym $mod+n exec spawn spotify
-    bindsym $mod+Shift+v exec spawn pavucontrol
-    bindsym $mod+CTRL+d exec spawn discord --ozone-platform=wayland
+    #bindsym $mod+Return exec $term
+    #bindsym $mod+b exec firefox
+    #bindsym $mod+n exec spawn spotify
+    #bindsym $mod+Shift+v exec spawn pavucontrol
+    #bindsym $mod+CTRL+d exec spawn discord --ozone-platform=wayland
     # Ricing
-    bindsym $mod+Shift+r exec spawn dconf-editor
+    #bindsym $mod+Shift+r exec spawn dconf-editor
     #bindsym $mod+CTRL+z exec spawn -s zoom --ozone-platform=wayland
     #bindsym $mod+Shift+b exec google-chrome-stable
     #bindsym $mod+SHIFT+CTRL+d exec spawn -s element-desktop -id=Element
@@ -117,11 +117,13 @@ focus_on_window_activation focus
     #bindsym $mod+CTRL+p exec /usr/lib/packettracer/packettracer.AppImage
     #bindsym $mod+CTRL+3 exec spawn -s noisetorch
     #bindsym $mod+z exec woomer --all-outputs --spotlight-radius 1920
-    bindsym $mod+CTRL+g exec spawn prismlauncher
-    bindsym $mod+CTRL+h exec spawn Sober
+    #bindsym $mod+CTRL+g exec spawn prismlauncher
+    #bindsym $mod+CTRL+h exec spawn Sober
     #bindsym $mod+CTRL+o exec spawn overlayed
     #bindsym $mod+Shift+Return exec emacsclient -c -a 'emacs'
-    bindsym $mod+Shift+Return exec spawn code
+    #bindsym $mod+Shift+Return exec spawn code
+
+    include ~/.config/sway/app-binds
 
     # Scripts
     bindsym $mod+Shift+p exec cycle-display
