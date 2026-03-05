@@ -98,7 +98,7 @@ input type:touchpad {
 	dwt disabled
 }
 
-focus_on_window_activation smart
+focus_on_window_activation focus
 
 # Key bindings
 # Basics:
@@ -201,6 +201,8 @@ focus_on_window_activation smart
 
     bindsym $mod+CTRL+1 move workspace to output eDP-1
     bindsym $mod+CTRL+2 move workspace to output HDMI-A-1
+    bindsym alt+1 move to output eDP-1
+    bindsym alt+2 move to output HDMI-A-1
     bindsym $mod+F2 exec move-workspaces --laptop
     bindsym $mod+F3 exec move-workspaces --monitor
 
