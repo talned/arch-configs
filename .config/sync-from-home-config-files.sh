@@ -10,5 +10,6 @@ cp ~/.config/sway/config.d/* sway/config.d/
 cp ~/.config/sway/{display-cpu-script,display-mem-script,nothing.jpg,display-uptime-script,app-binds} sway/
 cp -r ~/.config/mango .
 cp -r ~/.config/waybar .
+cp -r ~/.config/kitty .
 echo "✅ Copied all configs!"
 
