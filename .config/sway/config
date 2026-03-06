@@ -81,9 +81,6 @@ gaps outer 5
 #       Adjustments      #
 #========================#
 
-# Output configuration
-output * bg $XDG_CONFIG_HOME/sway/nothing.jpg fill
-
 # Let kanshi to handle the display
 exec_always kanshictl reload
 
