@@ -123,7 +123,7 @@ focus_on_window_activation focus
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit Sway?' -B 'Yes, exit sway' 'swaymsg exit'
 
-    bindsym $mod+F1 exec swaylock-fancy -F -e -L -d
+    bindsym $mod+F1 exec swaylock-fancy
 
 # Moving around:
     # Move your focus around
