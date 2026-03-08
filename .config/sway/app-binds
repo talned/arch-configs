@@ -6,6 +6,8 @@ bindsym $mod+Shift+v exec spawn pavucontrol
 bindsym $mod+CTRL+d exec spawn discord --ozone-platform=wayland
 bindsym $mod+Shift+Return exec spawn code
 bindsym $mod+CTRL+w exec spawn winboat
+bindsym $mod+CTRL+p exec spawn packettracer
+bindsym $mod+CTRL+m exec spawn prismlauncher
 # Ricing
 bindsym $mod+Shift+r exec spawn dconf-editor
 

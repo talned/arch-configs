@@ -35,6 +35,7 @@ exec swaywait code 'move workspace 4'
 # Startup Services
 exec systemctl --user start kanshi
 exec systemctl --user start polkit-gnome
+exec swayosd-server
 
 #========================#
 # Appearance and Theming #
@@ -71,7 +72,7 @@ for_window [floating] border pixel 1
 
 # Increase titlebar font size
 titlebar_border_thickness 1
-font pango:Adwaita Sans 11
+font pango 11
 titlebar_padding 10 3
 
 # Gaps
@@ -102,10 +103,10 @@ focus_on_window_activation focus
 
     # Scripts
     bindsym $mod+Shift+p exec cycle-display
-    bindsym $mod+shift+w exec sway-focus-first-tab
+    bindsym $mod+w exec sway-focus-first-tab
 
     # Kill focused window
-    bindsym $mod+Shift+q kill
+    bindsym $mod+q kill
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -115,7 +116,7 @@ focus_on_window_activation focus
     floating_modifier $mod normal
 
     # Focus on Urgent Windows
-    bindsym $mod+w [urgent=latest] focus
+    bindsym $mod+shift+w [urgent=latest] focus
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
@@ -240,13 +241,13 @@ bindsym $mod+r mode "resize"
 
 # Utilities:
     # Special keys to adjust volume via PulseAudio
-    bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
-    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
-    bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
+    bindsym --locked XF86AudioMute exec swayosd-client --output-volume mute-toggle
+    bindsym --locked XF86AudioLowerVolume exec swayosd-client --output-volume lower
+    bindsym --locked XF86AudioRaiseVolume exec swayosd-client --output-volume raise
     bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
     # Special keys to adjust brightness via brightnessctl
-    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
-    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+    bindsym --locked XF86MonBrightnessDown exec swayosd-client --brightness lower
+    bindsym --locked XF86MonBrightnessUp exec swayosd-client --brightness raise
     # Special key to take a screenshot with grim
     bindsym $mod+CTRL+s exec hyprshot -m region -z -o ~/Pictures/Screenshots
     bindsym $mod+CTRL+Shift+s exec hyprshot -m output -z -o ~/Pictures/Screenshots
@@ -254,7 +255,7 @@ bindsym $mod+r mode "resize"
 # Status Bar:
 bar {
     position top
-    font pango:monospace 15
+    font pango:monospace 14
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
