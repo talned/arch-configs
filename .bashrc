@@ -39,6 +39,7 @@ alias laus="systemctl --user list-units --state=running --type=service"
 alias lass="systemctl list-units --state=running --type=service"
 alias cat="bat -p"
 alias drag-n-drop="mv"
+alias update="yay -Syyu" 
 
 # Custom PS1 Prompt
 PS1='[\u'
@@ -94,10 +95,10 @@ zi() {
 }
 
 fzfedit() {
-	while file=$(fzf); do
-        	[ -z "$file" ] && break
-        	command vim "$file"
-    	done
+    while file=$(fzf); do
+            [ -z "$file" ] && break
+            command vim "$file"
+        done
 }
 
 vim() {
@@ -110,5 +111,14 @@ vim() {
     	else
         	command vim "$@"
     	fi
+}
+
+
+script() {
+	if [ -z "$1" ]; then
+    		echo "Usage: script filename"
+    		return 1
+  	fi
+	echo '#!/usr/bin/env bash' > $1 && chmod +x $1
 }
 
