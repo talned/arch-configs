@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+# List available libvirt networks if none provided
+if [ $# -eq 0 ]; then
+	echo "Available libvirt networks:"
+	sudo virsh net-list --all
+	echo "Usage: $0 <NET_DEV>"
+	exit 1
+fi
+
+NET_DEV="$1"
+
+nat_vm_host() {
+	local NET_DEV="$1"
+	IP_ADDRESS=$(sudo virsh net-dumpxml "$NET_DEV" | xmlstarlet sel -t -v "//ip/@address")
+	SUBNET_MASK=$(sudo virsh net-dumpxml "$NET_DEV" | xmlstarlet sel -t -v "//ip/@netmask")
+
+	NIC_VM_NET=$(ipcalc $IP_ADDRESS $SUBNET_MASK | awk -F' ' '/^Network:/ {print $2}')
+	NIC_VM_DEV=$(sudo virsh net-dumpxml "$NET_DEV" | xmlstarlet sel -t -v "//bridge/@name")
+	NIC_HOST_DEV=$(nmcli device status | awk '$2 == "wifi"{print $1}')
+
+	# Add NAT rule if missing
+	sudo iptables -t nat -C POSTROUTING -s "$NIC_VM_NET" -o "$NIC_HOST_DEV" -j MASQUERADE 2>/dev/null || \
+	sudo iptables -t nat -A POSTROUTING -s "$NIC_VM_NET" -o "$NIC_HOST_DEV" -j MASQUERADE
+
+	# Add FORWARD rules if missing
+	sudo iptables -C FORWARD -i "$NIC_VM_DEV" -o "$NIC_HOST_DEV" -j ACCEPT 2>/dev/null || \
+	sudo iptables -I FORWARD -i "$NIC_VM_DEV" -o "$NIC_HOST_DEV" -j ACCEPT
+
+	sudo iptables -C FORWARD -i "$NIC_HOST_DEV" -o "$NIC_VM_DEV" -m state --state RELATED,ESTABLISHED -j ACCEPT 2>/dev/null || \
+	sudo iptables -I FORWARD -i "$NIC_HOST_DEV" -o "$NIC_VM_DEV" -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+	echo
+	echo "=== iptables FORWARD chain ==="
+	sudo iptables -L FORWARD -n -v
+	echo
+	echo "=== iptables POSTROUTING (NAT) chain ==="
+	sudo iptables -t nat -L POSTROUTING -n -v
+	echo
+	echo "VMs on $NET_DEV ($NIC_VM_NET via $NIC_VM_DEV) are now NATed through $NIC_HOST_DEV"
+	echo
+}
+
+nat_vm_host "$NET_DEV"
+
