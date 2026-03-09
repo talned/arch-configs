@@ -95,9 +95,9 @@ zi() {
 }
 
 fzfedit() {
-    while file=$(fzf); do
-            [ -z "$file" ] && break
-            command vim "$file"
+	while file=$(fzf); do
+        	[ -z "$file" ] && break
+        	command vim "$file"
         done
 }
 
