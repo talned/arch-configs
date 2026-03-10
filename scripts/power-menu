@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+yad --title="Power Menu" \
+    --center \
+    --on-top \
+    --undecorated \
+    --width=200 \
+    --height=15 \
+    --button="Lock:1" \
+    --button="Restart:2" \
+    --button="Shutdown:3" \
+    --button="Logout:4" 
+
+case $? in
+    1) exec swaylock-fancy ;;
+    2) reboot ;;
+    3) poweroff ;;
+    4) swaymsg exit ;;
+esac
+
