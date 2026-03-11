@@ -69,6 +69,7 @@ client.focused_tab_title $white $black $white $grey_bg $white
 # Window Customisation
 default_border pixel 1
 for_window [floating] border pixel 1
+for_window [app_id="yad"] floating enable
 
 # Increase titlebar font size
 titlebar_border_thickness 1
@@ -121,10 +122,8 @@ focus_on_window_activation focus
     # Reload the configuration file
     bindsym $mod+Shift+c reload
 
-    # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit Sway?' -B 'Yes, exit sway' 'swaymsg exit'
-
-    bindsym $mod+F1 exec swaylock-fancy
+    # Power-Menu
+    bindsym $mod+Shift+e exec power-menu
 
 # Moving around:
     # Move your focus around
@@ -181,8 +180,8 @@ focus_on_window_activation focus
     bindsym $mod+CTRL+2 move workspace to output HDMI-A-1
     bindsym alt+1 move to output eDP-1
     bindsym alt+2 move to output HDMI-A-1
-    bindsym $mod+F2 exec move-workspaces --laptop
-    bindsym $mod+F3 exec move-workspaces --monitor
+    bindsym $mod+F1 exec move-workspaces --laptop
+    bindsym $mod+F2 exec move-workspaces --monitor
 
 # Layout stuff:
     # horizontal and vertical splits
