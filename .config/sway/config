@@ -104,7 +104,7 @@ focus_on_window_activation focus
 
     # Scripts
     bindsym $mod+Shift+p exec cycle-display
-    bindsym $mod+w exec sway-focus-first-tab
+    bindsym $mod+Shift+w exec sway-focus-first-tab
 
     # Kill focused window
     bindsym $mod+q kill
@@ -117,7 +117,7 @@ focus_on_window_activation focus
     floating_modifier $mod normal
 
     # Focus on Urgent Windows
-    bindsym $mod+shift+w [urgent=latest] focus
+    bindsym $mod+w [urgent=latest] focus
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
