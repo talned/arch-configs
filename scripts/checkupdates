@@ -13,5 +13,8 @@ else
     echo
     echo " System: $count Packages to Update"
     echo
+    echo " Packages to update:"
+    echo " $updates"
+    echo
 fi
 
