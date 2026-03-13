@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+yay -Sy > /dev/null 2>&1
+
+updates=$(yay -Qu)
+count=$(echo "$updates" | wc -l)
+
+if [ -z "$updates" ]; then
+    echo "System: Up To Date"
+else
+    echo "System: $count Packages to Update"
+fi
+
