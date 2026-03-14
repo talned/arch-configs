@@ -176,7 +176,7 @@ focus_on_window_activation focus
     bindsym $mod+Shift+Right exec move right
 
     # One-Handed Focus Moving
-    bindsym $mod+TAB focus left
+    bindsym $mod+TAB focus right
     bindsym alt+TAB focus down
 
 # Workspaces:
