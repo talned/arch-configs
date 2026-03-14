@@ -1,11 +1,11 @@
-# Welcome to Tal's Sway Config
+#=================================#
+# Welcome to Talmed's Sway Config #
+#=================================#
 
-# This configuration features:
-#	a simple black theme
-#	keybinds based on Tal's preference
-#	Certain Tweaks for Personal Use
+#===========#
+# Variables #
+#===========#
 
-# Variables
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Home row direction keys, like vim
@@ -17,7 +17,15 @@ set $right l
 set $term kitty
 set $browser firefox
 
+#==========#
+# Settings #
+#==========#
+
+# Make sure the view is horizontal and not vertical
 default_orientation horizontal
+
+# Make sure mirror app launches at the last workspace
+assign [app_id="at.yrlf.wl_mirror"] workspace 10
 
 # Startup Applications
 exec kitty
@@ -41,6 +49,12 @@ exec swayosd-server
 # Appearance and Theming #
 #========================#
 
+# Black & white theme: 
+#  pure black/white for focus, 
+#  dark grey for tabs, 
+#  grey text for inactivity & 
+#  deep red (#900000) for urgency.
+
 # Colors for Borders And Tabs
 set $black          #000000
 set $white          #ffffff
@@ -51,7 +65,7 @@ set $near_black     #000001
 # Color for Urgent Windows
 set $red            #900000
 
-# Colors for Unfocused Tab Title
+# Colors for Unfocused Tab Title (background and text)
 set $grey_bg        #272727
 set $grey_text      #909090
 
@@ -66,6 +80,10 @@ client.focused_inactive  $black $grey_bg $grey_text $black $near_black
 
 client.focused_tab_title $white $black $white $grey_bg $white
 
+#==========================#
+# Additional Customisation #
+#==========================#
+
 # Window Customisation
 default_border pixel 1
 for_window [floating] border pixel 1
@@ -79,9 +97,9 @@ titlebar_padding 10 3
 # Gaps
 gaps outer 5
 
-#========================#
-#       Adjustments      #
-#========================#
+#=================#
+# Sway Adjustment #
+#=================#
 
 # Let kanshi to handle the display
 exec_always kanshictl reload
@@ -101,7 +119,11 @@ input type:touchpad {
 # When client becomes urgent focus on immediately (works only with xwayland apps)
 focus_on_window_activation focus
 
-# Key bindings
+#==============#
+# Key bindings #
+#==============#
+
+# Controls:
     include ~/.config/sway/app-binds
 
     # Scripts
@@ -126,6 +148,9 @@ focus_on_window_activation focus
 
     # Power-Menu
     bindsym $mod+Shift+e exec power-menu
+
+    # Mirror HDMI-A-1
+    bindsym $mod+p exec wl-mirror HDMI-A-1
 
 # Moving around:
     # Move your focus around
@@ -277,11 +302,12 @@ bar {
     font pango:monospace 14
 
     # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
+    # The default just shows the uptime, current date with weekday and time.
     status_command while echo "$(~/.config/sway/display-uptime-script) $(LC_TIME=C date +'| %d/%m/%Y %A | %I:%M %p |') "; do sleep 1m; done
 
     height 30
 
+    # The colors are just black and white to fit with the sway decoration theming
     colors {
         statusline #ffffff
         background #000000
