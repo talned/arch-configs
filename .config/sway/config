@@ -89,6 +89,7 @@ exec_always kanshictl reload
 # Settings
 # Focus follows mouse when switching with keyboard
 focus_follows_mouse always
+# Remember mouse to stay focused on app
 mouse_warping container
 
 # Input configuration
@@ -97,6 +98,7 @@ input type:touchpad {
 	dwt disabled
 }
 
+# When client becomes urgent focus on immediately (works only with xwayland apps)
 focus_on_window_activation focus
 
 # Key bindings
@@ -137,16 +139,16 @@ focus_on_window_activation focus
     bindsym $mod+Up focus up
     bindsym $mod+Right focus right
 
-    # Move the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
+    # Move the focused window with the same
+    bindsym $mod+Shift+$left exec move left
+    bindsym $mod+Shift+$down exec move down
+    bindsym $mod+Shift+$up exec move up
+    bindsym $mod+Shift+$right exec move right
     # Ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
+    bindsym $mod+Shift+Left exec move left   
+    bindsym $mod+Shift+Down exec move down
+    bindsym $mod+Shift+Up exec move up
+    bindsym $mod+Shift+Right exec move right
 
     # Tab Scrolling
     bindsym $mod+TAB focus right
@@ -164,6 +166,19 @@ focus_on_window_activation focus
     bindsym $mod+8 workspace number 8
     bindsym $mod+9 workspace number 9
     bindsym $mod+0 workspace number 10
+
+    # Move focused container
+    bindsym alt+1 move container to workspace number 1
+    bindsym alt+2 move container to workspace number 2
+    bindsym alt+3 move container to workspace number 3
+    bindsym alt+4 move container to workspace number 4
+    bindsym alt+5 move container to workspace number 5
+    bindsym alt+6 move container to workspace number 6
+    bindsym alt+7 move container to workspace number 7
+    bindsym alt+8 move container to workspace number 8
+    bindsym alt+9 move container to workspace number 9
+    bindsym alt+0 move container to workspace number 10
+    
     # Move focused container & user focus to workspace
     bindsym $mod+Shift+1 move container to workspace number 1; workspace number 1
     bindsym $mod+Shift+2 move container to workspace number 2; workspace number 2
@@ -175,11 +190,16 @@ focus_on_window_activation focus
     bindsym $mod+Shift+8 move container to workspace number 8; workspace number 8
     bindsym $mod+Shift+9 move container to workspace number 9; workspace number 9
     bindsym $mod+Shift+0 move container to workspace number 10; workspace number 10
-
+    
+    # Move focused workspace to specific output
     bindsym $mod+CTRL+1 move workspace to output eDP-1
     bindsym $mod+CTRL+2 move workspace to output HDMI-A-1
-    bindsym alt+1 move to output eDP-1
-    bindsym alt+2 move to output HDMI-A-1
+
+    # Move focused container & user focus to specific output
+    bindsym alt+F1 move to output eDP-1; focus output eDP-1
+    bindsym alt+F2 move to output HDMI-A-1; focus output HDMI-A-1
+    
+    # Move all workspaces to specific output
     bindsym $mod+F1 exec move-workspaces --laptop
     bindsym $mod+F2 exec move-workspaces --monitor
 

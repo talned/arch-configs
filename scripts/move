@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Get the whole focused container as JSON
+FOCUSED=$(swaymsg -t get_tree | jq '.. | objects | select(.focused? == true)')
+
+# Get container id property
+CONID=$(echo "$FOCUSED" | jq -r '.id')
+
+# Move container
+swaymsg "[con_id=$CONID]" move $1
+
+# Refocus that container (no visible effect if already focused)
+swaymsg "[con_id=$CONID]" focus
