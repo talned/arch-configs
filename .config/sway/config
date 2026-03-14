@@ -175,12 +175,9 @@ focus_on_window_activation focus
     bindsym $mod+Shift+Up exec move up
     bindsym $mod+Shift+Right exec move right
 
-    # One-Handed Switching Between Containers
+    # One-Handed Focus Moving
     bindsym $mod+TAB focus left
-    bindsym alt+TAB focus right
-
-    bindsym $mod+Shift+TAB focus up
-    bindsym alt+Shift+TAB focus down
+    bindsym alt+TAB focus down
 
 # Workspaces:
     # Switch to workspace
