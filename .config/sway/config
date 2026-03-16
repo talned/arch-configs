@@ -308,7 +308,7 @@ bar {
     # The default just shows the uptime, current date with weekday and time.
     status_command while echo "$(~/.config/sway/display-uptime-script) $(LC_TIME=C date +'| %d/%m/%Y %A | %I:%M %p |') "; do sleep 1m; done
 
-    height 29
+    height 30
 
     # The colors are just black and white to fit with the sway decoration theming
     colors {
