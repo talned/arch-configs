@@ -153,6 +153,9 @@ focus_on_window_activation focus
     bindsym $mod+p exec wl-mirror HDMI-A-1
 
 # Moving around:
+    # Move your focus around with left hand
+    bindsym $mod+tab focus right
+    bindsym alt+tab focus down
     # Move your focus around
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
