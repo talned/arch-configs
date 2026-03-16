@@ -10,7 +10,8 @@ bindsym $mod+CTRL+p exec spawn packettracer
 bindsym $mod+CTRL+m exec spawn prismlauncher
 bindsym $mod+CTRL+c exec hyprpicker
 bindsym $mod+CTRL+k exec spawn virt-manager
-bindsym $mod+SHIFT+g exec spawn steam
+bindsym $mod+SHIFT+g exec spawn heroic
+bindsym $mod+SHIFT+s exec spawn steam
 bindsym $mod+SHIFT+f exec spawn xclicker
 # Ricing
 bindsym $mod+Shift+r exec spawn nwg-look
