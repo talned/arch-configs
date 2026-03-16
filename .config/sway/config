@@ -25,7 +25,7 @@ set $browser firefox
 default_orientation horizontal
 
 # Make sure mirror app launches at the last workspace
-assign [app_id="at.yrlf.wl_mirror"] workspace 10
+assign [app_id="at.yrlf.wl_mirror"] workspace 100
 
 # Startup Applications
 exec kitty
@@ -192,6 +192,9 @@ focus_on_window_activation focus
     bindsym $mod+9 workspace number 9
     bindsym $mod+0 workspace number 10
 
+    # The very last workspace
+    bindsym $mod+grave workspace number 100
+
     # Move focused container
     bindsym alt+1 move container to workspace number 1
     bindsym alt+2 move container to workspace number 2
@@ -299,13 +302,13 @@ bindsym $mod+r mode "resize"
 # Status Bar:
 bar {
     position top
-    font pango:monospace 14
+    font pango:monospace 13
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the uptime, current date with weekday and time.
     status_command while echo "$(~/.config/sway/display-uptime-script) $(LC_TIME=C date +'| %d/%m/%Y %A | %I:%M %p |') "; do sleep 1m; done
 
-    height 30
+    height 29
 
     # The colors are just black and white to fit with the sway decoration theming
     colors {
