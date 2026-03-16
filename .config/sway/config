@@ -153,16 +153,16 @@ focus_on_window_activation focus
     bindsym $mod+p exec wl-mirror HDMI-A-1
 
 # Moving around:
+    # Move your focus around with left hand only
+    bindsym $mod+tab focus right
+    bindsym $mod+shift+tab focus left
+    bindsym alt+tab focus down
+    bindsym alt+shift+tab focus up
     # Move your focus around
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
     bindsym $mod+$right focus right
-    # Or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
 
     # Move the focused window with the same
     bindsym $mod+Shift+$left exec move left
@@ -174,10 +174,6 @@ focus_on_window_activation focus
     bindsym $mod+Shift+Down exec move down
     bindsym $mod+Shift+Up exec move up
     bindsym $mod+Shift+Right exec move right
-
-    # One-Handed Focus Moving
-    bindsym $mod+TAB focus right
-    bindsym alt+TAB focus down
 
 # Workspaces:
     # Switch to workspace
@@ -192,7 +188,7 @@ focus_on_window_activation focus
     bindsym $mod+9 workspace number 9
     bindsym $mod+0 workspace number 10
 
-    # The very last workspace
+    # The very last workspace used for mirroring with HDMI-A-1
     bindsym $mod+grave workspace number 100
 
     # Move focused container
@@ -283,6 +279,7 @@ mode "resize" {
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
 }
 bindsym $mod+r mode "resize"
 
