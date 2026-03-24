@@ -41,8 +41,10 @@ exec swaywait firefox 'move workspace 3'
 exec swaywait code 'move workspace 4'
 
 # Startup Services
+exec xhost +
 exec systemctl --user start kanshi
-exec systemctl --user start polkit-gnome
+exec systemctl --user start polkit-mate
+exec systemctl --user start xsettingsd
 exec swayosd-server
 
 #========================#
@@ -155,7 +157,9 @@ focus_on_window_activation focus
 # Moving around:
     # Move your focus around with left hand
     bindsym $mod+tab focus right
+    bindsym $mod+shift+tab focus left
     bindsym alt+tab focus down
+    bindsym alt+shift+tab focus up
     # Move your focus around
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
@@ -238,7 +242,8 @@ focus_on_window_activation focus
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
     bindsym $mod+d layout tabbed
-    bindsym $mod+e layout toggle split
+    bindsym $mod+e layout toggle all
+    bindsym $mod+x layout toggle split
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
