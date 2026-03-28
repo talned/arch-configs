@@ -300,6 +300,7 @@ bindsym $mod+r mode "resize"
     # Special keys to adjust brightness via brightnessctl
     bindsym --locked XF86MonBrightnessDown exec swayosd-client --brightness lower
     bindsym --locked XF86MonBrightnessUp exec swayosd-client --brightness raise
+    bindsym $mod+backslash exec toggle-mic
     # Special key to take a screenshot with grim
     bindsym $mod+CTRL+s exec hyprshot -m region -z -o ~/Pictures/Screenshots
     bindsym $mod+CTRL+Shift+s exec hyprshot -m output -z -o ~/Pictures/Screenshots
@@ -312,6 +313,8 @@ bar {
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the uptime, current date with weekday and time.
     status_command while echo "$(~/.config/sway/display-uptime-script) $(LC_TIME=C date +'| %d/%m/%Y %A | %I:%M %p |') "; do sleep 1m; done
+
+    tray_output none
 
     height 30
 
