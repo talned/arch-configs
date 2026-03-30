@@ -39,9 +39,10 @@ alias rm="trash"
 alias icat="kitten icat"
 alias laus="systemctl --user list-units --state=running --type=service"
 alias lass="systemctl list-units --state=running --type=service"
-alias cat="bat -pn"
+alias cat="bat -p"
 alias drag-n-drop="mv"
-alias update="yay -Syyu" 
+alias update="yay -Syyu"
+alias code="code -r" 
 
 # Custom PS1 Prompt
 PS1='[\u'
