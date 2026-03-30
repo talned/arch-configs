@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Get the current mute status: returns 1 if muted, 0 if unmuted
+is_muted=$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q MUTED && echo 1 || echo 0)
+
+if [ "$is_muted" -eq 1 ]; then
+    # If muted, unmute and display "Mic UnMuted"
+    wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 0
+    swayosd-client --custom-message "Mic UnMuted"
+else
+    # If unmuted, mute and display "Mic Muted"
+    wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 1
+    swayosd-client --custom-message "Mic Muted"
+fi
