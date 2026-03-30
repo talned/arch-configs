@@ -3,7 +3,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+b exec firefox
 bindsym $mod+n exec spawn spotify
 bindsym $mod+Shift+v exec spawn pavucontrol
-bindsym $mod+CTRL+d exec spawn equibop
+bindsym $mod+CTRL+d exec spawn discord --ozone-platform=wayland
 bindsym $mod+Shift+Return exec spawn code
 bindsym $mod+CTRL+w exec spawn winboat
 bindsym $mod+CTRL+p exec spawn packettracer
@@ -13,6 +13,7 @@ bindsym $mod+CTRL+k exec spawn virt-manager
 bindsym $mod+SHIFT+g exec spawn heroic
 bindsym $mod+SHIFT+s exec spawn steam
 bindsym $mod+SHIFT+f exec spawn xclicker
+bindsym $mod+SHIFT+o exec spawn overlayed
 # Ricing
 bindsym $mod+Shift+r exec spawn dconf-editor
 bindsym $mod+c exec spawn gparted

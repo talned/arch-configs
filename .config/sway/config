@@ -151,6 +151,9 @@ focus_on_window_activation focus
     # Power-Menu
     bindsym $mod+Shift+e exec power-menu
 
+    # SwayLock
+    bindsym $mod+ctrl+minus exec swaylock-fancy
+
     # Mirror HDMI-A-1
     bindsym $mod+p exec wl-mirror HDMI-A-1
 
@@ -172,10 +175,10 @@ focus_on_window_activation focus
     bindsym $mod+Right focus right
     
     # Move the focused window with the same
-    bindsym $mod+Shift+$left exec move left
-    bindsym $mod+Shift+$down exec move down
-    bindsym $mod+Shift+$up exec move up
-    bindsym $mod+Shift+$right exec move right
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
     # Ditto, with arrow keys
     bindsym $mod+Shift+Left exec move left   
     bindsym $mod+Shift+Down exec move down
@@ -242,8 +245,8 @@ focus_on_window_activation focus
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
     bindsym $mod+d layout tabbed
-    bindsym $mod+e layout toggle all
-    bindsym $mod+x layout toggle split
+    bindsym $mod+e layout toggle split
+    bindsym $mod+x layout toggle all
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -300,7 +303,7 @@ bindsym $mod+r mode "resize"
     # Special keys to adjust brightness via brightnessctl
     bindsym --locked XF86MonBrightnessDown exec swayosd-client --brightness lower
     bindsym --locked XF86MonBrightnessUp exec swayosd-client --brightness raise
-    bindsym $mod+backslash exec toggle-mic
+    bindsym alt+backslash exec toggle-mic
     # Special key to take a screenshot with grim
     bindsym $mod+CTRL+s exec hyprshot -m region -z -o ~/Pictures/Screenshots
     bindsym $mod+CTRL+Shift+s exec hyprshot -m output -z -o ~/Pictures/Screenshots
@@ -314,9 +317,9 @@ bar {
     # The default just shows the uptime, current date with weekday and time.
     status_command while echo "$(~/.config/sway/display-uptime-script) $(LC_TIME=C date +'| %d/%m/%Y %A | %I:%M %p |') "; do sleep 1m; done
 
-    tray_output none
+    #tray_output none
 
-    height 30
+    #height 30
 
     # The colors are just black and white to fit with the sway decoration theming
     colors {
