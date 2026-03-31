@@ -46,6 +46,7 @@ exec systemctl --user start kanshi
 exec systemctl --user start polkit-mate
 exec systemctl --user start xsettingsd
 exec swayosd-server
+exec wl-clip-persist --clipboard both
 
 #========================#
 # Appearance and Theming #
@@ -90,6 +91,7 @@ client.focused_tab_title $white $black $white $grey_bg $white
 default_border pixel 1
 for_window [floating] border pixel 1
 for_window [app_id="yad"] floating enable
+for_window [app_id="xdg-desktop-portal-gtk"] floating disable 
 
 # Increase titlebar font size
 titlebar_border_thickness 1
@@ -236,6 +238,9 @@ focus_on_window_activation focus
     # Move all workspaces to specific output
     bindsym $mod+F1 exec move-workspaces --laptop
     bindsym $mod+F2 exec move-workspaces --monitor
+
+    bindsym CTRL+1 focus output eDP-1
+    bindsym CTRL+2 focus output HDMI-A-1
 
 # Layout stuff:
     # horizontal and vertical splits
