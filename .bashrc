@@ -43,6 +43,7 @@ alias cat="bat -p"
 alias drag-n-drop="mv"
 alias update="yay -Syyu"
 alias code="code -r" 
+alias cal="cal -3"
 
 # Custom PS1 Prompt
 PS1='[\u'
