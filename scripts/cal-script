@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+KITTY_TITLE="FloatingKittyCal"
+
+# Launch kitty in the background
+kitty --title="$KITTY_TITLE" sh -c 'fancy-cal ; read -n 1 -s -r -p "Press any key to exit..."' 2>/dev/null &
+
+kitty_pid=$!
+
+# Wait for the Kitty window to appear and make it floating
+for i in {1..50}; do
+    if swaymsg -t get_tree | grep -q "\"$KITTY_TITLE\""; then
+        swaymsg "[title=\"$KITTY_TITLE\"] floating enable"
+        break
+    fi
+    # Exit early if kitty process ends (window closes before appearing, rare)
+    kill -0 $kitty_pid 2>/dev/null || break
+    sleep 0.05
+done

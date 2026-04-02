@@ -11,6 +11,6 @@ case "$choice" in
 		power-menu
 		;;
 	"Calendar")
-		yad --calendar
+		cal-script
 		;;
 esac
