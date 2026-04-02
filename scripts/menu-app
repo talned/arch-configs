@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+choice=$(yad --title="Menu" --width=300 --height=200 \
+  --list --column="Menus: " "Power Menu" "Calendar" \
+  --print-column=1)
+
+choice="${choice%|}"
+
+case "$choice" in
+	"Power Menu")
+		power-menu
+		;;
+	"Calendar")
+		yad --calendar
+		;;
+esac
