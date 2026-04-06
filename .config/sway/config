@@ -32,13 +32,11 @@ exec $term
 exec spotify
 exec pavucontrol
 exec firefox
-exec code
 
 # Position Apps to Workspaces
 exec swaywait spotify 'move workspace 2'
 exec swaywait org.pulseaudio.pavucontrol 'move workspace 2'
 exec swaywait firefox 'move workspace 3'
-exec swaywait code 'move workspace 4'
 
 # Startup Services
 exec xhost +
