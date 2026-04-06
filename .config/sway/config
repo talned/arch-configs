@@ -28,7 +28,7 @@ default_orientation horizontal
 assign [app_id="at.yrlf.wl_mirror"] workspace 100
 
 # Startup Applications
-exec kitty
+exec $term
 exec spotify
 exec pavucontrol
 exec firefox
@@ -151,7 +151,7 @@ focus_on_window_activation focus
     bindsym $mod+Shift+c reload
 
     # Power-Menu
-    bindsym $mod+Shift+e exec power-menu
+    bindsym $mod+Shift+e exec menu-app
 
     # SwayLock
     bindsym $mod+ctrl+minus exec swaylock-fancy
