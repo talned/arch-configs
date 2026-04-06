@@ -93,7 +93,7 @@ for_window [app_id="xdg-desktop-portal-gtk"] floating disable
 
 # Increase titlebar font size
 titlebar_border_thickness 1
-font pango 11
+font pango 12
 titlebar_padding 10 3
 
 # Gaps
