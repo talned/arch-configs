@@ -1,24 +1,23 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-if [ $# -ne 2 ]
-then
-    echo "Usage: swaywait [app_id/class] [sway_command]"
+if [ $# -lt 3 ]; then
+    echo "Usage: swaywait [property_key] [property_value] [sway_command]"
+    echo "Example: swaywait con_id 12345 focus"
     exit 1
 fi
 
-TARGET=$1
-COMMAND=$2
+USER_KEY="$1"
+USER_VALUE="$2"
+shift 2
+COMMAND=("$@")
 
-swaymsg -t subscribe -m '["window"]' | while read line
-do
-    CON=`echo $line | jq -r 'select(.change=="new").container'`
-    APPID=`echo $CON | jq -r '.app_id'`
-    CLASS=`echo $CON | jq -r '.window_properties.class'`
-    CONID=`echo $CON | jq -r '.id'`
-
-    if [ "$APPID" = "$TARGET" ] || [ "$CLASS" = "$TARGET" ]
-    then
-        swaymsg "[con_id=$CONID] $COMMAND"
-        kill -PIPE 0
+while true; do
+    APP_TREE=$(swaymsg -t get_tree | jq --arg KEY "$USER_KEY" --arg VALUE "$USER_VALUE" '.. | objects | select(has($KEY) and .[$KEY] == $VALUE)')
+    if [ -n "$APP_TREE" ]; then
+        break
     fi
+    sleep 0.5
 done
+
+swaymsg "[$USER_KEY=$USER_VALUE]" "${COMMAND[@]}"
+

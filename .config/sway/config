@@ -34,9 +34,9 @@ exec pavucontrol
 exec firefox
 
 # Position Apps to Workspaces
-exec swaywait spotify 'move workspace 2'
-exec swaywait org.pulseaudio.pavucontrol 'move workspace 2'
-exec swaywait firefox 'move workspace 3'
+exec swaywait instance spotify 'move workspace 2'
+exec swaywait app_id org.pulseaudio.pavucontrol 'move workspace 2'
+exec swaywait app_id firefox 'move workspace 3'
 
 # Startup Services
 exec xhost +
