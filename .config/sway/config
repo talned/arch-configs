@@ -8,14 +8,17 @@
 
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
+
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
+
+# Variables
 set $term kitty
 set $browser firefox
+set $font_size 13
 
 #==========#
 # Settings #
@@ -93,7 +96,7 @@ for_window [app_id="xdg-desktop-portal-gtk"] floating disable
 
 # Increase titlebar font size
 titlebar_border_thickness 1
-font pango 12
+font pango:monospace $font_size
 titlebar_padding 10 3
 
 # Gaps
@@ -296,7 +299,7 @@ focus_on_window_activation focus
 # Status Bar:
 bar {
     position top
-    font pango:monospace 13
+    font pango:monospace $font_size
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the uptime, current date with weekday and time.
