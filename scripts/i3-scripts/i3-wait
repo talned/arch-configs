@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+USER_KEY="$1"
+USER_VALUE="$2"
+shift 2
+COMMAND=("$@")
+
+until APP_TREE=$(i3-msg -t get_tree | jq -r --arg KEY "$USER_KEY" --arg VALUE "$USER_VALUE" \
+	'.. | objects | select(has($KEY) and .[$KEY] == $VALUE)'
+); [[ -n "$APP_TREE" ]]; do
+  sleep 0.5
+done
+
+i3-msg "[$USER_KEY=$USER_VALUE]" "${COMMAND[@]}"
+

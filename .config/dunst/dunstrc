@@ -1,0 +1,26 @@
+[global]
+font = Monospace 14
+timeout = 2
+frame_width = 1
+gap_size = 10
+width = 360
+height = 200
+origin = top-right
+
+# black background, white border (frame) and white text by default
+frame_color = "#ffffff"
+
+[urgency_low]
+background = "#000000"
+foreground = "#ffffff"
+
+[urgency_normal]
+background = "#000000"
+foreground = "#ffffff"
+
+[urgency_critical]
+background = "#000000"
+foreground = "#ffffff"
+# keep critical border white too
+frame_color = "#ffffff"
+

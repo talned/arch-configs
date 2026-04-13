@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+match_val="$1"
+focused_workspace=$(i3-msg -t get_workspaces | jq '.[] | select(.focused==true) | .num')
+client_id=$(i3-msg -t get_tree | jq -r '
+  	.. | 
+	if (.class? // "" | ascii_downcase | test("'"${match_val,,}"'")) then "[class=" + .class + "]"
+	elif (.instance? // "" | ascii_downcase | test("'"${match_val,,}"'")) then "[instance=" + .instance + "]"
+	elif (.app_id? // "" | ascii_downcase | test("'"${match_val,,}"'")) then "[app_id=" + .app_id + "]"
+	else empty end')
+
+if [[ -z "$client_id" ]]; then
+	# If not running, spawn the app in background
+	"$match_val" $2 &
+	exit 0
+fi
+
+i3-msg $client_id move to workspace $focused_workspace
+i3-msg $client_id focus
+

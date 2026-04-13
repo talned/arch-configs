@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+playerctl -p spotify --follow metadata --format '{{mpris:trackid}}' |
+while IFS= read -r trackid; do
+  title=$(playerctl -p spotify metadata --format '{{title}}')
+  artist=$(playerctl -p spotify metadata --format '{{artist}}')
+
+  notify-send "Spotify" "New track: ${title} — ${artist}"
+done
+

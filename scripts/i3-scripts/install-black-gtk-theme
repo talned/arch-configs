@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+git clone https://github.com/talned/mygtktheme.git
+
+cd mygtktheme
+
+sudo bash install.sh -c dark -s standard -l --tweaks black rimless
+
