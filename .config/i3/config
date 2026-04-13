@@ -31,6 +31,7 @@ exec $browser
 # Position Apps to certain workspaces
 exec i3-wait class kitty 'move workspace 1'
 exec i3-wait instance spotify 'move workspace 2'
+exec i3-wait instance spotify 'move left'
 exec i3-wait class pavucontrol 'move workspace 2'
 exec i3-wait class firefox 'move workspace 3'
 
@@ -39,7 +40,6 @@ exec xhost +
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id nm-applet
 exec --no-startup-id spotify-notify-daemon
-exec i3-msg restart
 
 #========================#
 # Appearance and Theming #
@@ -94,6 +94,9 @@ gaps outer 5
 #================#
 # i3 Adjustments #
 #================#
+
+# let autorandr handle the display
+exec_always autorandr --change
 
 # Focus follows mouse when switching with keyboard
 focus_follows_mouse yes
