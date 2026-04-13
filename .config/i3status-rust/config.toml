@@ -1,0 +1,28 @@
+[theme]
+theme = "mytheme"
+
+[[block]]
+block = "sound"
+driver = "auto"
+device_kind = "source"
+device = "@DEFAULT_SOURCE@"
+format = " MIC $volume | MIC MUTED "
+
+[[block]]
+block = "sound"
+format = " VOL $volume | VOL MUTED "
+
+[[block]]
+block = "uptime"
+interval = 1
+format = " UP $text "
+
+[[block]]
+block = "time"
+format = " $timestamp.datetime(f:'%A %d/%m/%Y') "
+
+[[block]]
+block = "time"
+interval = 60
+format = " $timestamp.datetime(f:'%I:%M %p') "
+
