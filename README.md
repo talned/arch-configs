@@ -1,6 +1,6 @@
 # 🖥️ arch-configs
 
-Personal Arch Linux dotfiles and configuration files for a **Sway** (Wayland) desktop environment, featuring a minimal black theme, vim-style keybindings, and smart multi-monitor display management.
+Personal Arch Linux dotfiles and configuration files for **Sway** (Wayland) & **i3-wm** (Xlibre) desktop environment, featuring a minimal black theme, vim-style keybindings, and smart multi-monitor display management.
 
 ---
 
