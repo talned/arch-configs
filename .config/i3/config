@@ -123,6 +123,10 @@ floating_modifier $mod
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
 
+#---------------#
+# Moving Around #
+#---------------#
+
 # Changing Focus with vim keys
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
@@ -147,6 +151,10 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+#-------------------#
+# Adjusting Clients #
+#-------------------#
+
 # split in horizontal orientation
 bindsym $mod+i split v
 
@@ -169,6 +177,37 @@ bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px 
+        bindsym k resize grow height 10 px 
+        bindsym l resize shrink height 10 px 
+        bindsym semicolon resize grow width 10 px
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px 
+        bindsym Down resize grow height 10 px
+        bindsym Up resize shrink height 10 px
+        bindsym Right resize grow width 10 px
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+#---------------------#
+# Managing Workspaces #
+#---------------------#
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -223,33 +262,6 @@ bindsym $mod+Shift+0 move container to workspace number $ws10; workspace number 
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px 
-        bindsym k resize grow height 10 px 
-        bindsym l resize shrink height 10 px 
-        bindsym semicolon resize grow width 10 px
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px 
-        bindsym Down resize grow height 10 px
-        bindsym Up resize shrink height 10 px
-        bindsym Right resize grow width 10 px
-
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
-}
-
-bindsym $mod+r mode "resize"
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1%
