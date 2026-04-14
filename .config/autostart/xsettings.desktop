@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=XSettings-Daemon
+Exec=systemctl --user start xsettingsd
+

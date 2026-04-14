@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=MATE Polkit Agent
+Exec=/usr/lib/mate-polkit/polkit-mate-authentication-agent-1
+
+
