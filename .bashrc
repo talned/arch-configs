@@ -46,6 +46,7 @@ alias drag-n-drop="mv"
 alias update="yay -Syyu"
 alias code="code -r" 
 alias cal="cal -3"
+alias gitrepo="gh repo view --web"
 
 # Custom PS1 Prompt
 PS1='[\u'
