@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+dmenu_run -p exec -b -i -fn "monospace:size=13" \
+	-nb "#000000" \
+	-nf "#FFFFFF" \
+	-sb "#FFFFFF" \
+	-sf "#000000"
