@@ -1,18 +1,33 @@
 #!/usr/bin/env bash
 
-match_val="$1"
+spawn_command="$1"
+match_string="$2"
 focused_workspace=$(i3-msg -t get_workspaces | jq '.[] | select(.focused==true) | .num')
-client_id=$(i3-msg -t get_tree | jq -r '
-  	.. | 
-	if (.class? // "" | ascii_downcase | test("'"${match_val,,}"'")) then "[class=" + .class + "]"
-	elif (.instance? // "" | ascii_downcase | test("'"${match_val,,}"'")) then "[instance=" + .instance + "]"
-	elif (.app_id? // "" | ascii_downcase | test("'"${match_val,,}"'")) then "[app_id=" + .app_id + "]"
-	else empty end')
+
+# Print usage and exit if arguments are missing
+if [[ -z "$spawn_command" || -z "$match_string" ]]; then
+    echo "Usage: $0 \"<spawn command>\" <window match string>"
+    echo "Example: $0 \"emacs --with-profile default\" emacs"
+    exit 1
+fi
+
+# Find a matching window
+find_client_id() {
+  local arg="${1,,}"
+  i3-msg -t get_tree | jq -r \
+    '.. | 
+    if (.class? // "" | ascii_downcase | test("'$arg'")) then "[class=" + .class + "]"
+    elif (.instance? // "" | ascii_downcase | test("'$arg'")) then "[instance=" + .instance + "]"
+    elif (.app_id? // "" | ascii_downcase | test("'$arg'")) then "[app_id=" + .app_id + "]"
+    else empty end'
+}
+
+client_id=$(find_client_id "$match_string")
 
 if [[ -z "$client_id" ]]; then
-	# If not running, spawn the app in background
-	"$match_val" $2 &
-	exit 0
+    # Use eval to properly expand arguments in $spawn_command
+    eval "$spawn_command &"
+    exit 0
 fi
 
 i3-msg $client_id move to workspace $focused_workspace

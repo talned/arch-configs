@@ -1,9 +1,14 @@
 # start a terminal
-bindsym $mod+Return exec spawn $term
-bindsym $mod+b exec spawn firefox
-bindsym $mod+Shift+v exec spawn pavucontrol
-bindsym $mod+n exec spawn spotify
-bindsym $mod+CTRL+d exec spawn discord
+bindsym $mod+Return exec $term
+bindsym $mod+CTRL+Return exec spawn $term kitty
+bindsym $mod+b exec spawn 'firefox' firefox
+bindsym $mod+Shift+v exec spawn 'pavucontrol' pavucontrol
+bindsym $mod+n exec spawn 'spotify' Spotify
+bindsym $mod+CTRL+d exec spawn 'discord' discord
+bindsym $mod+Shift+n exec spawn 'scrcpy' scrcpy
+bindsym $mod+Shift+Return exec spawn 'editor' emacs
+
+bindsym $mod+CTRL+s exec flameshot gui
 # start dmenu (a program launcher)
-bindsym $mod+slash exec --no-startup-id dmenu_run
+bindsym $mod+slash exec --no-startup-id mydemnu 
 
