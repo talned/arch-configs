@@ -24,7 +24,7 @@ export PATH="$JAVA_HOME/bin:$PATH"
 # Aliases
 #alias start-sway='uwsm start sway'
 #alias sway='[ -n "$WAYLAND_DISPLAY" ] && echo "Sway is already running." || command sway'
-#alias i3con="vim ~/.config/i3/config"
+alias i3con="vim ~/.config/i3/config"
 # Config Based Aliases
 #alias default-display='kanshi-laptop-monitor-shuffler --choose'
 #alias swaycon="vim ~/.config/sway/config"
