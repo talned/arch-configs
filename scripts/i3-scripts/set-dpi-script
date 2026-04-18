@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+if [[ -z "$1" ]]; then
+    echo "Usage: $0 <dpi-value>"
+    exit 1
+fi
+
+DPI="$1"
+XRES=~/.Xresources
+
+# Update or add the Xft.dpi: line
+if grep -q "^Xft.dpi:" "$XRES"; then
+    sed -i "s/^Xft.dpi:.*/Xft.dpi: $DPI/" "$XRES"
+else
+    echo "Xft.dpi: $DPI" >> "$XRES"
+fi
+
+# Merge new Xresources
+xrdb -merge "$XRES"
+
+echo "Set DPI to $DPI. Rebooting PC in 2 seconds..."
+sleep 2
+
+# Reboot PC
+reboot
+

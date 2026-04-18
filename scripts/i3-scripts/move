@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Get the whole focused container as JSON
+FOCUSED=$(i3-msg -t get_tree | jq '.. | objects | select(.focused? == true)')
+
+# Get container id property
+CONID=$(echo "$FOCUSED" | jq -r '.id')
+
+# Move container
+i3-msg "[con_id=$CONID]" move $1
+
+# Refocus that container (no visible effect if already focused)
+# Get active window geometry
+eval $(xdotool getactivewindow getwindowgeometry --shell)
+
+# Calculate center
+center_x=$((X + WIDTH / 2))
+center_y=$((Y + HEIGHT / 2))
+
+# Move mouse to center of focused window
+xdotool mousemove $center_x $center_y
+

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+i3-msg focus "$1"
+
+eval $(xdotool getactivewindow getwindowgeometry --shell)
+
+# Calculate the center (X + WIDTH / 2, Y + HEIGHT / 2)
+center_x=$((X + WIDTH / 2))
+center_y=$((Y + HEIGHT / 2))
+
+xdotool mousemove $center_x $center_y
+

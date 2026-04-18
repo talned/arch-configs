@@ -7,6 +7,8 @@ bindsym $mod+n exec spawn 'spotify' Spotify
 bindsym $mod+CTRL+d exec spawn 'discord' discord
 bindsym $mod+Shift+n exec spawn 'scrcpy' scrcpy
 bindsym $mod+Shift+Return exec spawn 'editor' emacs
+bindsym $mod+Shift+o exec spawn 'packettracer' PacketTracer
+bindsym $mod+Shift+i exec spawn 'virt-manager' Virt-manager
 
 bindsym $mod+CTRL+s exec flameshot gui
 # start dmenu (a program launcher)
