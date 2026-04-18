@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# Save notification ID file location
 NOTIFY_ID_FILE="${XDG_RUNTIME_DIR:-/tmp}/mic_notify_id"
 
 notify_mic() {
@@ -14,17 +13,19 @@ notify_mic() {
     echo "$new_id" > "$NOTIFY_ID_FILE"
 }
 
-# For PulseAudio example, see previous advice
-is_muted=$(pactl get-source-mute @DEFAULT_SOURCE@ | awk '{print $2}')
-
 current_id=""
 [ -f "$NOTIFY_ID_FILE" ] && current_id=$(cat "$NOTIFY_ID_FILE")
 
-if [ "$is_muted" = "yes" ]; then
-    pactl set-source-mute @DEFAULT_SOURCE@ 0
-    notify_mic "Unmuted" "$current_id"
-else
-    pactl set-source-mute @DEFAULT_SOURCE@ 1
+# Toggle once
+pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# Check new state and notify
+is_muted_after=$(pactl get-source-mute @DEFAULT_SOURCE@ | awk '{print $2}')
+if [ "$is_muted_after" = "yes" ]; then
     notify_mic "Muted" "$current_id"
+else
+    notify_mic "Unmuted" "$current_id"
 fi
+
+pkill -SIGRTMIN+10 i3status-rs 2>/dev/null || true
 

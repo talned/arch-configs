@@ -87,7 +87,7 @@ for_window [class="discord"] border pixel 1
 for_window [window_role="GtkFileChooserDialog"] floating disable
 
 # titlebar font size
-font pango:'IBM Plex Mono' 12
+font pango:'IBM Plex Mono' 13
 
 # gaps please
 gaps outer 5
@@ -119,8 +119,6 @@ include ~/.config/i3/app-binds
 bindsym $mod+Shift+q kill
 
 bindsym $mod+Shift+p exec autorandr --cycle
-
-bindsym $mod+backslash exec toggle-mic
 
 bindsym $mod+w [title="Cisco Packet Tracer"] focus
 
@@ -284,11 +282,14 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-# Use pactl to adjust volume in PulseAudio.
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+# Use scripts to adjust volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id set-speaker-vol up
+bindsym XF86AudioLowerVolume exec --no-startup-id set-speaker-vol down
+bindsym XF86AudioMute exec --no-startup-id toggle-speaker
+# Use scripts to adjust mic volume
+bindsym $mod+F1 exec --no-startup-id toggle-mic
+bindsym $mod+F3 exec --no-startup-id set-mic-vol up
+bindsym $mod+F2 exec --no-startup-id set-mic-vol down
 # Special Keys to adjust the brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 10%+
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-

@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+STEP="${STEP:-5}"
+NOTIFY_ID_FILE="${XDG_RUNTIME_DIR:-/tmp}/mic_notify_id"
+
+notify_mic() {
+    # $1 = notification body, e.g. "Mic 85%"
+    # $2 = notification id (if any)
+    if [ -n "$2" ]; then
+        new_id=$(notify-send "Microphone" "$1" --replace-id="$2" -p)
+    else
+        new_id=$(notify-send "Microphone" "$1" -p)
+    fi
+    echo "$new_id" > "$NOTIFY_ID_FILE"
+}
+
+get_notify_id() {
+    [ -f "$NOTIFY_ID_FILE" ] && cat "$NOTIFY_ID_FILE"
+}
+
+get_mic_percent() {
+    pactl get-source-volume @DEFAULT_SOURCE@ | awk 'match($0, /[0-9]+%/) { print substr($0, RSTART, RLENGTH); exit }'
+}
+
+refresh_bar() {
+    pkill -SIGRTMIN+10 i3status-rs 2>/dev/null || true
+}
+
+case "$1" in
+  up)
+    pactl set-source-volume @DEFAULT_SOURCE@ "+${STEP}%"
+    ;;
+  down)
+    pactl set-source-volume @DEFAULT_SOURCE@ "-${STEP}%"
+    ;;
+  *)
+    echo "Usage: $0 {up|down}" >&2
+    exit 2
+    ;;
+esac
+
+PCT="$(get_mic_percent)"
+ID="$(get_notify_id)"
+notify_mic "Mic Volume: ${PCT}" "$ID"
+refresh_bar
+

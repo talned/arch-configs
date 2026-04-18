@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+STEP="${STEP:-1}"
+NOTIFY_ID_FILE="${XDG_RUNTIME_DIR:-/tmp}/speaker_vol_notify_id"
+
+notify_speaker() {
+    # $1 = notification body, e.g. "Speaker Volume: 85%"
+    # $2 = notification id (if any)
+    if [ -n "$2" ]; then
+        new_id=$(notify-send "Speaker" "$1" --replace-id="$2" -p)
+    else
+        new_id=$(notify-send "Speaker" "$1" -p)
+    fi
+    echo "$new_id" > "$NOTIFY_ID_FILE"
+}
+
+get_notify_id() {
+    [ -f "$NOTIFY_ID_FILE" ] && cat "$NOTIFY_ID_FILE"
+}
+
+get_speaker_percent() {
+    pactl get-sink-volume @DEFAULT_SINK@ | awk 'match($0, /[0-9]+%/) { print substr($0, RSTART, RLENGTH); exit }'
+}
+
+case "$1" in
+  up)
+    pactl set-sink-volume @DEFAULT_SINK@ "+${STEP}%"
+    ;;
+  down)
+    pactl set-sink-volume @DEFAULT_SINK@ "-${STEP}%"
+    ;;
+  *)
+    echo "Usage: $0 {up|down}" >&2
+    exit 2
+    ;;
+esac
+
+PCT="$(get_speaker_percent)"
+ID="$(get_notify_id)"
+notify_speaker "Speaker Volume: ${PCT}" "$ID"
+

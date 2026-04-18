@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+NOTIFY_ID_FILE="${XDG_RUNTIME_DIR:-/tmp}/speaker_notify_id"
+
+notify_speaker() {
+    # $1 = "Muted" or "Unmuted"
+    # $2 = notification id (if any)
+    if [ -n "$2" ]; then
+        new_id=$(notify-send "Speaker" "Speaker $1" --replace-id="$2" -p)
+    else
+        new_id=$(notify-send "Speaker" "Speaker $1" -p)
+    fi
+    echo "$new_id" > "$NOTIFY_ID_FILE"
+}
+
+current_id=""
+[ -f "$NOTIFY_ID_FILE" ] && current_id=$(cat "$NOTIFY_ID_FILE")
+
+# Toggle, then read back the new state so the notification is correct
+pactl set-sink-mute @DEFAULT_SINK@ toggle
+is_muted_after=$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')
+
+if [ "$is_muted_after" = "yes" ]; then
+    notify_speaker "Muted" "$current_id"
+else
+    notify_speaker "Unmuted" "$current_id"
+fi
+

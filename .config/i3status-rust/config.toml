@@ -2,11 +2,19 @@
 theme = "mytheme"
 
 [[block]]
-block = "sound"
-driver = "auto"
-device_kind = "source"
-device = "@DEFAULT_SOURCE@"
-format = " MIC $volume | MIC MUTED "
+block = "custom"
+shell = "sh"
+interval = "once"
+signal = 10
+command = '''
+MUTE="$(pactl get-source-mute @DEFAULT_SOURCE@ | awk "{print \$2}")"
+VOL="$(pactl get-source-volume @DEFAULT_SOURCE@ | awk -F"/" "NR==1{gsub(/ /,\"\"); print \$2}")"
+if [ "$MUTE" = "yes" ]; then
+  echo "<span color='red'>MIC MUTED</span>"
+else
+  echo "MIC: $VOL"
+fi
+'''
 
 [[block]]
 block = "sound"
