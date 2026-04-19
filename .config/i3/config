@@ -70,7 +70,7 @@ set $grey_text      #909090
 
 client.focused           $near_black $black $white $white $white
 
-client.unfocused         $black $grey_bg $grey_text $red $near_black
+client.unfocused         $black $grey_bg $grey_text $black $near_black
 
 client.focused_inactive  $black $grey_bg $grey_text $black $near_black
 
