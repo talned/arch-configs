@@ -3,20 +3,15 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+#=================#
+# Temporary Stuff #
+#=================#
+
 # Set up Guix environment
 #GUIX_PROFILE="/home/tal/.guix-profile"
 #. "$GUIX_PROFILE/etc/profile"
 #unset GUIX_PROFILE
 
-eval "$(zoxide init bash --cmd cd)"
-
-# Environment Variables
-export LC_TIME=C
-export EDITOR=vim
-export SUDO_EDITOR=$EDITOR
-export VISUAL=$EDITOR
-export JAVA_HOME="/usr/lib/jvm/java-26-openjdk"
-export PATH="$JAVA_HOME/bin:$PATH"
 #export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
 #export PATH="/home/tal/.local/bin:$HOME/.config/guix/current/bin:$PATH"
 #export EMACS_CONFIG_DIR="$HOME/.config/emacs"
@@ -24,12 +19,29 @@ export PATH="$JAVA_HOME/bin:$PATH"
 # Aliases
 #alias start-sway='uwsm start sway'
 #alias sway='[ -n "$WAYLAND_DISPLAY" ] && echo "Sway is already running." || command sway'
-#alias i3con="vim ~/.config/i3/config"
 # Config Based Aliases
 #alias default-display='kanshi-laptop-monitor-shuffler --choose'
 #alias swaycon="vim ~/.config/sway/config"
 #alias kancon="vim ~/.config/kanshi/config"
 #alias keycon="vim ~/.config/sway/app-binds"
+#alias i3con="vim ~/.config/i3/config"
+
+eval "$(zoxide init bash --cmd cd)"
+
+#=======================#
+# Environment Variables #
+#=======================#
+
+export LC_TIME=C
+export EDITOR=vim
+export SUDO_EDITOR=$EDITOR
+export VISUAL=$EDITOR
+export JAVA_HOME="/usr/lib/jvm/java-26-openjdk"
+export PATH="$JAVA_HOME/bin:$PATH"
+
+#=========#
+# Aliases #
+#=========#
 
 alias sudo="sudo "
 alias ls="lsd --group-dirs first --icon=never --color=auto"
@@ -49,14 +61,20 @@ alias cal="cal -3"
 alias gitrepo="gh repo view --web"
 alias tree="tree -a"
 
-# Custom PS1 Prompt
+#===============#
+# Custom Prompt #
+#===============#
+
 PS1='[\u'
 if [[ -f "$HOME/.show_hostname" ]]; then
   PS1+='@\h'
 fi
 PS1+=' \W]$ '
 
-# Functions
+#===========#
+# Functions #
+#===========#
+
 show-host() {
 	local state_file="$HOME/.show_hostname"
   
