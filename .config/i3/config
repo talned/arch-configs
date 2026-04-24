@@ -103,6 +103,7 @@ exec_always autorandr --change
 # Focus follows mouse when switching with keyboard
 focus_follows_mouse yes
 
+# Mouse gets centered to the output when switching
 mouse_warping output
 
 # When client becomes urgent focus on immediately
@@ -111,8 +112,10 @@ focus_on_window_activation focus
 # all popup windows
 popup_during_fullscreen all
 
+# Don’t toggle back to the previous workspace when selecting the current one again
 workspace_auto_back_and_forth no
 
+# Wrap focus around within the current workspace (when you hit an edge, focus jumps to the opposite side)
 focus_wrapping workspace
 
 #=============#
