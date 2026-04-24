@@ -102,12 +102,18 @@ exec_always autorandr --change
 
 # Focus follows mouse when switching with keyboard
 focus_follows_mouse yes
-# Remember mouse to stay focused on app
+
 mouse_warping output
+
 # When client becomes urgent focus on immediately
 focus_on_window_activation focus
+
 # all popup windows
 popup_during_fullscreen all
+
+workspace_auto_back_and_forth no
+
+focus_wrapping force
 
 #=============#
 # Keybindings #
@@ -273,6 +279,17 @@ bindsym $mod+Shift+7 move container to workspace number $ws7; workspace number $
 bindsym $mod+Shift+8 move container to workspace number $ws8; workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9; workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10; workspace number $ws10
+
+#-------------#
+# Scratchpads #
+#-------------#
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
+
 
 #------------------#
 # Utility Keybinds #

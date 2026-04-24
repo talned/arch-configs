@@ -9,6 +9,7 @@ bindsym $mod+Shift+n exec spawn 'scrcpy' scrcpy
 bindsym $mod+Shift+Return exec spawn 'editor' emacs
 bindsym $mod+Shift+o exec spawn 'packettracer' PacketTracer
 bindsym $mod+Shift+i exec spawn 'virt-manager' Virt-manager
+bindsym $mod+Shift+g exec spawn 'steam -no-cef-sandbox -cef-disable-gpu' steam
 
 bindsym $mod+CTRL+s exec flameshot gui
 # start dmenu (a program launcher)
