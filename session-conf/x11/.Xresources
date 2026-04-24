@@ -1,3 +1,4 @@
+# Store in the home directory of the user logged in
 Xft.dpi: 120
 Xft.antialias: true
 Xft.hinting: true
