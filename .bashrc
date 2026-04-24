@@ -81,75 +81,74 @@ PS1+=' \W]$ '
 #===========#
 
 show-host() {
-	local state_file="$HOME/.show_hostname"
-  
-	if [[ -f "$state_file" ]]; then
-		rm "$state_file"
-		echo "Hostname hidden"
-	else
-		touch "$state_file"
-		echo "Hostname shown"
-	fi
+    local state_file="$HOME/.show_hostname"
 
-	source ~/.bashrc
+    if [[ -f "$state_file" ]]; then
+        rm "$state_file"
+        echo "Hostname hidden"
+    else
+        touch "$state_file"
+        echo "Hostname shown"
+    fi
+
+    source ~/.bashrc
 }
 
 pkghealth() {
-	local total=$(sudo pacman -Q | wc -l)
-	local valid=$(sudo pacman -Qk 2>/dev/null | grep "0 missing files" | wc -l)
-	local percent=$((valid * 100 / total))
+    local total=$(sudo pacman -Q | wc -l)
+    local valid=$(sudo pacman -Qk 2>/dev/null | grep "0 missing files" | wc -l)
+    local percent=$((valid * 100 / total))
     
-	if [ "$valid" -eq "$total" ]; then
-		echo "✅ System Status: ${percent}% Healthy"
-		echo "   All $total packages intact!"
+    if [ "$valid" -eq "$total" ]; then
+        echo "✅ System Status: ${percent}% Healthy"
+        echo "   All $total packages intact!"
     else
-    	echo "⚠️  System Status: ${percent}% Healthy ($valid/$total)"
-		echo ""
-    	echo "Broken packages:"
-    	pacman -Qk 2>/dev/null | grep -v "0 missing files"
-	fi
+        echo "⚠️  System Status: ${percent}% Healthy ($valid/$total)"
+        echo ""
+        echo "Broken packages:"
+        pacman -Qk 2>/dev/null | grep -v "0 missing files"
+    fi
 }
 
 zi() {
-	local temp=0
+    local temp=0
     # Check for -t flag
     if [[ "$1" == "-t" ]]; then
-		temp=1
-		shift
+        temp=1
+        shift
     fi
-	local oldpwd="$PWD"
-	cd "$(zoxide query "$1")" && fzfedit
-	# Only return to previous dir if temp flag was used
-	if [[ $temp -eq 1 ]]; then
-		cd "$oldpwd"
-	fi
+    local oldpwd="$PWD"
+    cd "$(zoxide query "$1")" && fzfedit
+    # Only return to previous dir if temp flag was used
+    if [[ $temp -eq 1 ]]; then
+        cd "$oldpwd"
+    fi
 }
 
 fzfedit() {
-	while file=$(fzf); do
-		[ -z "$file" ] && break
-		command vim "$file"
-	done
+    while file=$(fzf); do
+        [ -z "$file" ] && break
+        command vim "$file"
+    done
 }
 
 vim() {
-	if [ "$#" -eq 0 ]; then
-		fzfedit
-	elif [ -f "$1" ]; then
-		command vim "$@"
-	elif [ -d "$1" ]; then
+    if [ "$#" -eq 0 ]; then
+        fzfedit
+    elif [ -f "$1" ]; then
+        command vim "$@"
+    elif [ -d "$1" ]; then
         cd "$1" && fzfedit && cd - > /dev/null
-	else
-		command vim "$@"
-	fi
+    else
+        command vim "$@"
+    fi
 }
 
-
 script() {
-	if [ -z "$1" ]; then
-		echo "Usage: script filename"
-		return 1
-  	fi
-	echo '#!/usr/bin/env bash' > $1 && chmod +x $1
+    if [ -z "$1" ]; then
+        echo "Usage: script filename"
+        return 1
+    fi
+    echo '#!/usr/bin/env bash' > $1 && chmod +x $1
 }
 
