@@ -51,8 +51,8 @@ export PATH="$JAVA_HOME/bin:$PATH"
 alias sudo="sudo "
 alias ls="lsd --group-dirs first --icon=never --color=auto"
 alias la="lsd -a --group-dirs first --icon=never --color=auto"
-alias ll="lsd -lh --group-dirs first --icon=never --color=never"
-alias lla="lsd -lah --group-dirs first --icon=never --color=never"
+alias ll="lsd -lh --group-dirs first --icon=never --color=auto"
+alias lla="lsd -lah --group-dirs first --icon=never --color=auto"
 alias grep="grep --color=auto"
 alias rm="trash"
 alias icat="kitten icat"
@@ -72,7 +72,7 @@ alias tree="tree -a"
 
 PS1='[\u'
 if [[ -f "$HOME/.show_hostname" ]]; then
-  PS1+='@\h'
+    PS1+='@\h'
 fi
 PS1+=' \W]$ '
 
@@ -138,7 +138,7 @@ vim() {
 	elif [ -f "$1" ]; then
 		command vim "$@"
 	elif [ -d "$1" ]; then
-		cd "$1" && fzfedit && cd - > /dev/null
+        cd "$1" && fzfedit && cd - > /dev/null
 	else
 		command vim "$@"
 	fi
