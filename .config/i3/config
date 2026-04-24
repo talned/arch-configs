@@ -128,8 +128,10 @@ include ~/.config/i3/app-binds
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# Cycle through display profiles
 bindsym $mod+Shift+p exec autorandr --cycle
 
+# Focus on packet tracer 
 bindsym $mod+w [title="Cisco Packet Tracer"] focus
 
 # Reload Pipewire for audio fix
@@ -332,3 +334,4 @@ bar {
 		focused_workspace  #FFFFFF #000000 #FFFFFF
 	}
 }
+
