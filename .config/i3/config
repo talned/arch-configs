@@ -126,7 +126,7 @@ focus_wrapping workspace
 include ~/.config/i3/app-binds
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+z kill
 
 # Cycle through display profiles
 bindsym $mod+Shift+p exec autorandr --cycle
