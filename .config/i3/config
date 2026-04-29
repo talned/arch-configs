@@ -63,18 +63,20 @@ set $red            #900000
 
 # Colors for Unfocused Tab Title (background and text)
 set $grey_bg        #272727
-set $grey_text      #909090
+
+# Transparent
+set $trans          #00000000
 
 # Apply Colors to Sway Windows
 # Format: client.[state] [border] [background] [text] [indicator] [child_border]
 
-client.focused           $near_black $black $white $white $white
+client.focused           $trans $white $trans $white $white
 
-client.unfocused         $black $grey_bg $grey_text $black $near_black
+client.unfocused         $black $black $trans $black $near_black
 
-client.focused_inactive  $black $grey_bg $grey_text $black $near_black
+client.focused_inactive  $black $white $trans $black $near_black
 
-client.focused_tab_title $white $black $white $grey_bg $white
+client.focused_tab_title $white $white $trans $grey_bg $white
 
 #==========================#
 # Additional Customisation #
@@ -88,7 +90,7 @@ for_window [class="steam"] border pixel 1
 for_window [window_role="GtkFileChooserDialog"] floating disable
 
 # titlebar font size
-font pango:'IBM Plex Mono' 13
+font pango:'' 0
 
 # gaps please
 gaps outer 5
@@ -191,10 +193,12 @@ bindsym $mod+o split h
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+d layout tabbed
-bindsym $mod+e layout toggle split
+# change container layout (tabbed & toggle split)
+bindsym $mod+e layout tabbed
+bindsym $mod+d layout toggle split
+
+# Stacking doesn't look good without text rendering.
+#bindsym $mod+s layout stacking
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
