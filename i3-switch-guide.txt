@@ -1,6 +1,6 @@
-Install the xlibre repo
+Install Xorg
 
-Install the necessary xlibre packages
+Install the necessary Xorg packages
 
 Installing i3-wm, i3blocks & i3status
 
