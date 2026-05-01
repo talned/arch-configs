@@ -158,18 +158,6 @@ bindsym $mod+Shift+Tab focus left
 bindsym mod1+Tab exec focus down
 bindsym mod1+Shift+Tab exec focus up
 
-# Changing Focus with vim keys
-bindsym $mod+$left exec focus left
-bindsym $mod+$down exec focus down
-bindsym $mod+$up exec focus up
-bindsym $mod+$right exec focus right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left exec focus left
-bindsym $mod+Down exec focus down
-bindsym $mod+Up exec focus up
-bindsym $mod+Right exec focus right
-
 # move clients with left hand
 mode "move" {
     bindsym $mod+Tab exec move right
@@ -184,7 +172,19 @@ mode "move" {
 
 bindsym $mod+grave mode "move"
 
-# move focused window
+# Changing Focus with vim keys
+bindsym $mod+$left exec focus left
+bindsym $mod+$down exec focus down
+bindsym $mod+$up exec focus up
+bindsym $mod+$right exec focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left exec focus left
+bindsym $mod+Down exec focus down
+bindsym $mod+Up exec focus up
+bindsym $mod+Right exec focus right
+
+# move focused window with vim keys
 bindsym $mod+Shift+$left exec move left
 bindsym $mod+Shift+$down exec move down
 bindsym $mod+Shift+$up exec move up
