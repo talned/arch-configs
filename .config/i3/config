@@ -244,6 +244,12 @@ mode "resize" {
         bindsym Up resize shrink height 10 px
         bindsym Right resize grow width 10 px
 
+	# same bindings for left hand
+	bindsym $mod+Shift+Tab resize shrink width 10 px
+	bindsym mod1+Tab resize grow height 10 px
+	bindsym mod1+Shift+Tab resize shrink height 10 px
+	bindsym $mod+Tab resize grow width 10 px
+
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
