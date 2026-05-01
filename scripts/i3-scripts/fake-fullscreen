@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+BAR_MODE_FILE="/tmp/i3bar_mode"
+
+if [ -f "$BAR_MODE_FILE" ]; then
+    CURRENT_MODE=$(cat "$BAR_MODE_FILE")
+else
+    CURRENT_MODE="dock"
+fi
+
+if [ "$CURRENT_MODE" = "dock" ]; then
+    i3-msg 'bar mode invisible'
+    echo "invisible" > "$BAR_MODE_FILE"
+else
+    i3-msg 'bar mode dock'
+    echo "dock" > "$BAR_MODE_FILE"
+fi
+
+

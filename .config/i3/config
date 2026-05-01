@@ -139,6 +139,8 @@ bindsym $mod+w [title="Cisco Packet Tracer"] focus
 # Reload Pipewire for audio fix
 bindsym CTRL+grave exec systemctl --user restart pipewire && notify-send "Pipewire" "Reloaded"
 
+bindsym $mod+Shift+f exec fake-fullscreen
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -151,8 +153,8 @@ tiling_drag modifier titlebar
 #---------------#
 
 # Left handed focus switching
-bindsym $mod+Tab exec focus right
-bindsym $mod+Shift+Tab exec focus left
+bindsym $mod+Tab focus right
+bindsym $mod+Shift+Tab focus left
 bindsym mod1+Tab exec focus down
 bindsym mod1+Shift+Tab exec focus up
 
@@ -167,6 +169,20 @@ bindsym $mod+Left exec focus left
 bindsym $mod+Down exec focus down
 bindsym $mod+Up exec focus up
 bindsym $mod+Right exec focus right
+
+# move clients with left hand
+mode "move" {
+    bindsym $mod+Tab exec move right
+    bindsym $mod+Shift+Tab exec move left
+    bindsym mod1+Tab exec move down
+    bindsym mod1+Shift+Tab exec move up
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+grave mode "default"
+}
+
+bindsym $mod+grave mode "move"
 
 # move focused window
 bindsym $mod+Shift+$left exec move left
