@@ -210,8 +210,8 @@ bindsym $mod+o split h
 bindsym $mod+f fullscreen toggle
 
 # change container layout (tabbed & toggle split)
-bindsym $mod+e layout tabbed
-bindsym $mod+d layout toggle split
+bindsym $mod+d layout tabbed
+bindsym $mod+e layout toggle split
 
 # Stacking doesn't look good without text rendering.
 #bindsym $mod+s layout stacking
@@ -340,8 +340,8 @@ bindsym $mod+F1 exec --no-startup-id toggle-mic
 bindsym $mod+F3 exec --no-startup-id set-mic-vol up
 bindsym $mod+F2 exec --no-startup-id set-mic-vol down
 # Special Keys to adjust the brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 10%+
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
+bindsym XF86MonBrightnessUp exec --no-startup-id brightness-set up
+bindsym XF86MonBrightnessDown exec --no-startup-id brightness-set down
 
 #------------#
 # Status Bar #

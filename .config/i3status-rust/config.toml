@@ -7,6 +7,16 @@ shell = "sh"
 interval = "once"
 signal = 10
 command = '''
+PCT=$(brightnessctl -m | awk -F, '{print $4}')
+echo "BRIGHT $PCT"
+'''
+
+[[block]]
+block = "custom"
+shell = "sh"
+interval = "once"
+signal = 10
+command = '''
 MUTE="$(pactl get-source-mute @DEFAULT_SOURCE@ | awk "{print \$2}")"
 VOL="$(pactl get-source-volume @DEFAULT_SOURCE@ | awk -F"/" "NR==1{gsub(/ /,\"\"); print \$2}")"
 if [ "$MUTE" = "yes" ]; then
@@ -33,4 +43,11 @@ format = " $timestamp.datetime(f:'%A %d/%m/%Y') "
 block = "time"
 interval = 60
 format = " $timestamp.datetime(f:'%I:%M %p') "
+
+[[block]]
+block = "battery"
+format = " BAT $percentage │" 
+full_format = " BAT $percentage │" 
+device = "BAT0"
+driver = "upower"
 

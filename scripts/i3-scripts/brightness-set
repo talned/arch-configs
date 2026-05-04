@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+STEP="${STEP:-5}"
+NOTIFY_ID_FILE="${XDG_RUNTIME_DIR:-/tmp}/bright_notify_id"
+
+notify_brightness() {
+    # $1 = notification body, e.g. "Brightness 85%"
+    # $2 = notification id (if any)
+    if [ -n "$2" ]; then
+        new_id=$(notify-send "Brightness" "$1" --replace-id="$2" -p)
+    else
+        new_id=$(notify-send "Brightness" "$1" -p)
+    fi
+    echo "$new_id" > "$NOTIFY_ID_FILE"
+}
+
+get_notify_id() {
+    [ -f "$NOTIFY_ID_FILE" ] && cat "$NOTIFY_ID_FILE"
+}
+
+get_brightness_percent() {
+    brightnessctl -m | awk -F, '{print $4}'
+}
+
+refresh_bar() {
+    pkill -SIGRTMIN+10 i3status-rs 2>/dev/null || true
+}
+
+case "$1" in
+  up)
+    brightnessctl set ${STEP}%+
+    ;;
+  down)
+    brightnessctl set ${STEP}%-
+    ;;
+  *)
+    echo "Usage: $0 {up|down}" >&2
+    exit 2
+    ;;
+esac
+
+PCT=$(get_brightness_percent)
+ID=$(get_notify_id)
+notify_brightness "Level: ${PCT}" "$ID"
+refresh_bar
+
